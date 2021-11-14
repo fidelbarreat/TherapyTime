@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col, Card, Carousel} from 'react-bootstrap'
 
 import './utils/firebaseConfig';
 
