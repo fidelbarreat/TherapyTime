@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './utils/firebaseConfig';
+export { default as Footer } from './components/Footer/Footer';
+
 
 ReactDOM.render(
   
