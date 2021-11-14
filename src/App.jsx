@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
-import Slideshow from "./components/Slideshow";
-import AboutUs from "./components/AboutUs";
-import Specialists from "./HomePage/Specialists/Specialists";
-import Features from "./HomePage/Features/Features";
+import Slideshow from "./components/HomePage/Slideshow";
+import AboutUs from "./components/HomePage/AboutUs";
+import Specialists from "./components/HomePage/Specialists/Specialists";
+import Features from "./components/HomePage/Features/Features";
 import "./App.css";
 
 const App = () => {
