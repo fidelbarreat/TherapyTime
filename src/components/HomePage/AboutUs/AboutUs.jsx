@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from './../images/logo-therapytime.png';
-import icon1 from './../images/icon-1.svg';
-import icon2 from './../images/icon-2.svg';
-import icon3 from './../images/icon-3.svg';
-import iconCalendar from './../images/icon-calendar.svg';
-import iconChat from './../images/icon-chat.svg';
-import iconSearch from './../images/icon-search.svg';
-import iconStar from './../images/icon-star.svg';
-import image from './../images/about-us-pic.png'
+import logo from '../../../images/logo-therapytime.png';
+import icon1 from '../../../images/icon-1.svg';
+import icon2 from '../../../images/icon-2.svg';
+import icon3 from '../../../images/icon-3.svg';
+import iconCalendar from '../../../images/icon-calendar.svg';
+import iconChat from '../../../images/icon-chat.svg';
+import iconSearch from '../../../images/icon-search.svg';
+import iconStar from '../../../images/icon-star.svg';
+import image from '../../../images/about-us-pic.png'
 import styled from 'styled-components';
 
 const AboutUs = () => {
@@ -84,7 +84,6 @@ const AboutUsContainer = styled.div`
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin: 2%;
 `;
 
 const AboutUsInfo = styled.div`

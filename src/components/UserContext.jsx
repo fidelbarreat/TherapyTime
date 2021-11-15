@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
-import { auth, db } from '../firebase-config';
+import { auth, db } from '../utils/firebase-config';
 import { getFirstElementArrayCollection } from '../Parsers';
 
 export const UserContext = createContext(null);

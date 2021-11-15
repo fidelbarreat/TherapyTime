@@ -1,9 +1,9 @@
 import { Switch, Route } from 'react-router-dom';
 
-import Home from '../src/paginas/Home';
-import Login from '../src/paginas/Login';
-import Registrarse from '../src/paginas/Registrarse';
-import Perfil from '../src/paginas/Perfil'
+import Home from './components/HomePage/Home';
+import Login from './components/Login/Login';
+import Registrarse from './components/RegistroPersona/Registrarse';
+import Perfil from './components/Perfil/Perfil'
 
 
 import PrivateRoute from '../src/components/ProtectedRoutes/PrivateRoute';

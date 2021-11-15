@@ -1,10 +1,10 @@
 import React, {useRef, useEffect, useCallback} from 'react';
-import img1 from './../images/first-slideshow-1.jpg';
-import img2 from './../images/first-slideshow-2.jpg';
-import img3 from './../images/first-slideshow-3.jpg';
-import img4 from './../images/first-slideshow-4.jpg';
-import {ReactComponent as LeftArrow} from './../images/left-arrow.svg';
-import {ReactComponent as RightArrow} from './../images/right-arrow.svg';
+import img1 from '../../../images/first-slideshow-1.jpg';
+import img2 from '../../../images/first-slideshow-2.jpg';
+import img3 from '../../../images/first-slideshow-3.jpg';
+import img4 from '../../../images/first-slideshow-4.jpg';
+import {ReactComponent as LeftArrow} from '../../../images/left-arrow.svg';
+import {ReactComponent as RightArrow} from '../../../images/right-arrow.svg';
 import styled from 'styled-components';
 
 const Slideshow = ({

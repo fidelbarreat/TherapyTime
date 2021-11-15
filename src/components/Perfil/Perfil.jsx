@@ -1,9 +1,9 @@
 import React from "react";
 
-import { auth } from "../firebase-config";
-import { useHistory } from "react-router";
+import { auth } from "../../utils/firebase-config";
+import { useHistory } from "react-router-dom";
 
-import FormularioModPerfil from "../components/FormularioModPerfil";
+import FormularioModPerfil from "./FormularioModPerfil";
 
 export default function Perfil(){
     

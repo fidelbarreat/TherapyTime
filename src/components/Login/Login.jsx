@@ -1,4 +1,4 @@
-import FormularioLogin from '../components/FormularioLogin';
+import FormularioLogin from './FormularioLogin';
 
 
 

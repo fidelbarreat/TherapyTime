@@ -1,18 +1,20 @@
 import React from 'react';
 import { Container, Row, Card} from 'react-bootstrap';
+import logo from '../../../images/logo-therapytime.png';
+import "./features.css";
 
 function Features() {
 
     const features = [{
+        name: "Privacidad",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+        url: ""
+    },{
         name: "Seguridad",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
         url: ""
     },{
-        name: "Transparencia",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
-        url: ""
-    },{
-        name: "X",
+        name: "Soporte 24/7",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
         url: ""
     }]

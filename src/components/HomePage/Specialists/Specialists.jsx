@@ -1,28 +1,59 @@
 import React from "react";
 import { Container, Row, Carousel, Card, CardGroup } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
+import "./specialists.css";
+import girl1 from '../../../images/girl1.png';
+import girl2 from '../../../images/girl2.png';
+import girl3 from '../../../images/girl3.png';
+import girl4 from '../../../images/girl4.png';
+import girl5 from '../../../images/girl5.png';
+import boy1 from '../../../images/boy1.png';
 
 function Specialists() {
-	const personas = [
+	const personas = {data: [[
 		{
-			name: "Ana",
+			name: "Trixie Tang",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
 			rating: 5.0,
+			img: {girl1}
 		},
 		{
-			name: "Monica",
+			name: "Carol Federman",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
-			rating: 2.9,
+			rating: 4.0,
+			img: {girl2}
 		},
 		{
-			name: "Pedro",
+			name: "John Fitzer",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
 			rating: 4.5,
+			img: "../../../images/boy1.png"
+		}],[
+		{
+			name: "Catrina Wilson",
+			description:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+			rating: 5.0,
+			img: {girl3}
 		},
-	];
+		{
+			name: "Andrea Fitzer",
+			description:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+			rating: 4.0,
+			img: {girl4}
+		},
+		{
+			name: "Miriam Rodríguez",
+			description:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+			rating: 4.5,
+			img: {girl5}
+		},
+	]]};
 
 	return (
 		<Container>
@@ -34,12 +65,39 @@ function Specialists() {
 					<Carousel.Item>
 						{/* <Row className="justify-content-md-center"> */}
 						<CardGroup>
-							{personas.map((persona) => {
+							{personas.data[0].map((persona) => {
 								return (
 									<Card style={{ margin: "1rem" }}>
 										<Card.Body>
 											<img
-												src="https://www.herbazest.com/imgs/d/8/7/551784/pera.jpg"
+												src={persona.img}
+												width="100%"
+											/>
+											<Card.Title>{persona.name}</Card.Title>
+											<ReactStars
+												count={5}
+												value={persona.rating}
+												isHalf={true}
+												size={24}
+												activeColor="#ffd700"
+												edit={false}
+											/>
+											<Card.Text>{persona.description}</Card.Text>
+										</Card.Body>
+									</Card>
+								);
+							})}
+						</CardGroup>
+					</Carousel.Item>
+					<Carousel.Item>
+						{/* <Row className="justify-content-md-center"> */}
+						<CardGroup>
+							{personas.data[1].map((persona) => {
+								return (
+									<Card style={{ margin: "1rem" }}>
+										<Card.Body>
+											<img
+												src={persona.img}
 												width="100%"
 											/>
 											<Card.Title>{persona.name}</Card.Title>
