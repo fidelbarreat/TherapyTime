@@ -61,7 +61,7 @@ function FormularioLogin() {
 	};
 
 	return (
-		<Container>
+		<Container className="containerForm align-middle">
 			<Row>
 				<Col sm={6}><img src={image} alt="" width="100%"/></Col>
 				<Col sm={6}>
