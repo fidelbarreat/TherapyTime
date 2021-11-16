@@ -19,7 +19,7 @@ const Slideshow = ({
 
 	const next = useCallback(() => {
 		
-		if(slideshow.current.children.length > 0){
+		if(slideshow.current && slideshow.current.children.length > 0){
 			const firstElement = slideshow.current.children[0];
 			slideshow.current.style.transition = `${velocity}ms ease-out all`;
 			const slideSize = slideshow.current.children[0].offsetWidth;
@@ -72,6 +72,7 @@ const Slideshow = ({
 				}, intervalo);
 			});
 		}
+		return() => clearInterval(intervaloSlideshow.current);
 	}, [autoplay, intervalo, next]);
 
 	return (

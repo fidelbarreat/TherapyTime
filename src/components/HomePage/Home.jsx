@@ -8,7 +8,7 @@ import "./home.css";
 export default function Home(){
 
     return(
-      <main>
+		<main>
 				<Slideshow
 					controles={true}
 					autoplay={true}
