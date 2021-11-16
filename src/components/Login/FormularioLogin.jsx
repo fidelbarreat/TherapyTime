@@ -61,72 +61,74 @@ function FormularioLogin() {
 	};
 
 	return (
-		<Container className="containerForm align-middle">
-			<Row>
-				<Col sm={6}><img src={image} alt="" width="100%"/></Col>
-				<Col sm={6}>
-					<Card className="card">
-						<Card.Body>
-							<Card.Title>Inicio de Sesión</Card.Title>
-							{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
-							<Card.Text>
-								<Form className="form" onSubmit={handleSubmit}>
-									<Form.Group className="mb-3" controlId="formBasicEmail">
-										<Form.Label>Correo</Form.Label>
-										<Form.Control
-											className="email"
-											name="email"
-											id="email"
-											type="email"
-											placeholder="Ingresa tu correo"
-											value={values.email}
-											onChange={handleOnChange}
-										/>
-									</Form.Group>
+		<div className="login-container">
+			<Container>
+				<Row>
+					<Col sm={6}><img src={image} alt="" width="100%"/></Col>
+					<Col sm={6}>
+						<Card className="card">
+							<Card.Body>
+								<Card.Title>Inicio de Sesión</Card.Title>
+								{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
+								<Card.Text>
+									<Form className="form" onSubmit={handleSubmit}>
+										<Form.Group className="mb-3" controlId="formBasicEmail">
+											<Form.Label>Correo</Form.Label>
+											<Form.Control
+												className="email"
+												name="email"
+												id="email"
+												type="email"
+												placeholder="Ingresa tu correo"
+												value={values.email}
+												onChange={handleOnChange}
+											/>
+										</Form.Group>
 
-									<Form.Group className="mb-3" controlId="formBasicPassword">
-										<Form.Label>Contraseña</Form.Label>
-										<Form.Control
-											className="clave"
-											name="password"
-											id="password"
-											type="password"
-											placeholder="Ingresa tu contraseña"
-											value={values.password}
-											onChange={handleOnChange}
-										/>
+										<Form.Group className="mb-3" controlId="formBasicPassword">
+											<Form.Label>Contraseña</Form.Label>
+											<Form.Control
+												className="clave"
+												name="password"
+												id="password"
+												type="password"
+												placeholder="Ingresa tu contraseña"
+												value={values.password}
+												onChange={handleOnChange}
+											/>
 
-										<Form.Text className="text-muted">
-											Nunca compartas tu contraseña con nadie.
-										</Form.Text>
-									</Form.Group>
+											<Form.Text className="text-muted">
+												Nunca compartas tu contraseña con nadie.
+											</Form.Text>
+										</Form.Group>
 
-									<Button
-										className="submitLogin"
-										variant="primary"
-										type="submit"
-										onClick={handleSubmit}
-									>
-										Ingresar
-									</Button>
-									<br />
-									<br />
-									<Button
-										className="loginWithGoogle"
-										variant="primary"
-										type="button"
-										onClick={handleGoogleLogin}
-									>
-										Ingresar con Google
-									</Button>
-								</Form>
-							</Card.Text>
-						</Card.Body>
-					</Card>
-				</Col>
-        
-			</Row>
-		</Container>
+										<Button
+											className="submitLogin"
+											variant="primary"
+											type="submit"
+											onClick={handleSubmit}
+										>
+											Ingresar
+										</Button>
+										<br />
+										<br />
+										<Button
+											className="loginWithGoogle"
+											variant="primary"
+											type="button"
+											onClick={handleGoogleLogin}
+										>
+											Ingresar con Google
+										</Button>
+									</Form>
+								</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>
+			
+				</Row>
+			</Container>
+		</div>
 	);
 }
 

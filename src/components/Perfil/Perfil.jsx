@@ -12,12 +12,9 @@ export default function Perfil(){
     if( !auth.currentUser ){
         h.push('/login');
     }
-
-
+    
     return(
         <>
-            <h1>PERFIL DE USUARIO</h1>
-
             <FormularioModPerfil/>
         </>
     )

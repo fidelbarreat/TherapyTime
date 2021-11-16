@@ -16,42 +16,42 @@ function Specialists() {
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
 			rating: 5.0,
-			img: {girl1}
+			img: girl1
 		},
 		{
 			name: "Carol Federman",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
 			rating: 4.0,
-			img: {girl2}
+			img: girl2
 		},
 		{
 			name: "John Fitzer",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
 			rating: 4.5,
-			img: "../../../images/boy1.png"
+			img: boy1
 		}],[
 		{
 			name: "Catrina Wilson",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
 			rating: 5.0,
-			img: {girl3}
+			img: girl3
 		},
 		{
 			name: "Andrea Fitzer",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
 			rating: 4.0,
-			img: {girl4}
+			img: girl4
 		},
 		{
 			name: "Miriam Rodríguez",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
 			rating: 4.5,
-			img: {girl5}
+			img: girl5
 		},
 	]]};
 
@@ -71,6 +71,7 @@ function Specialists() {
 										<Card.Body>
 											<img
 												src={persona.img}
+												alt="" 
 												width="100%"
 											/>
 											<Card.Title>{persona.name}</Card.Title>
@@ -98,6 +99,7 @@ function Specialists() {
 										<Card.Body>
 											<img
 												src={persona.img}
+												alt=""
 												width="100%"
 											/>
 											<Card.Title>{persona.name}</Card.Title>
