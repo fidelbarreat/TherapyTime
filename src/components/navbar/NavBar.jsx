@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../components/UserContext";
 import { auth } from "../../utils/firebase-config";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import logo from "../../images/logo.png";
 import "./Navbar.css";
 
@@ -18,13 +18,14 @@ function NavBar() {
 
 	return (
 		<>
-			<Navbar expand="lg" className="nav" fixed="top">
+			<Navbar collapseOnSelect expand="lg" className="nav" sticky="top">
 				<Container>
 					{/* <Navbar.Brand><div className = "logo">TherapyTime</div></Navbar.Brand> */}
 					<Navbar.Brand>
 						<img className="imag-log" src={logo} alt="Logo" />
 					</Navbar.Brand>
-					<Navbar.Collapse id="basic-navbar-nav justify-content-end">
+					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+					<Navbar.Collapse id="responsive-navbar-nav justify-content-end">
 						<Nav className="me-auto ">
 							<Nav.Link>
 								<Link to="/" className="link">
@@ -42,9 +43,9 @@ function NavBar() {
 
 							{!!user ? (
 								<div>
-									<button type="button" onClick={handleLogout}>
+									<Button variant="warning" onClick={handleLogout}>
 										Logout {user.name}
-									</button>
+									</Button>
 								</div>
 							) : (
 								<>
