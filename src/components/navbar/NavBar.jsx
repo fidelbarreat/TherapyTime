@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "../../components/UserContext";
+import { UserContext } from "../UserContext";
 import { auth } from "../../utils/firebase-config";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../../images/logo.png";
