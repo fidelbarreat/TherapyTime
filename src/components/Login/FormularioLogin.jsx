@@ -6,6 +6,8 @@ import { useState } from "react";
 import './formularioLogin.css';
 import image from "../../images/login.png";
 import { Form, Button, Container, Col, Row, Card } from "react-bootstrap";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function FormularioLogin() {
 	const { setUser } = useContext(UserContext);
@@ -23,7 +25,8 @@ function FormularioLogin() {
 
 	const handleGoogleLogin = async () => {
 		await auth.signInWithPopup(googleProvider);
-		const docRef = db.collection("users").doc(auth.currentUser.uid);
+		const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
+		toast('Inicio de sesión exitoso.')
 
 		docRef
 			.get()
@@ -32,7 +35,6 @@ function FormularioLogin() {
 
 				if (doc.data() == null) {
 					const newGoogleLogin = {
-						// uid: auth.currentUser.uid,
 						email: auth.currentUser.email,
 						password: "",
 						nombre: auth.currentUser.displayName,
@@ -56,8 +58,14 @@ function FormularioLogin() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await auth.signInWithEmailAndPassword(values.email, values.password);
-		history.push("/");
+		try{
+			await auth.signInWithEmailAndPassword(values.email, values.password);
+			toast('Inicio de sesión exitoso.')
+			history.push("/");
+		} catch{
+			toast('Datos inválidos.')
+		}
+		
 	};
 
 	return (
