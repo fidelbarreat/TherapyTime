@@ -67,7 +67,7 @@ function Specialists() {
 						<CardGroup>
 							{personas.data[0].map((persona) => {
 								return (
-									<Card style={{ margin: "1rem" }}>
+									<Card className="specialist-card">
 										<Card.Body>
 											<img
 												src={persona.img}
@@ -95,7 +95,7 @@ function Specialists() {
 						<CardGroup>
 							{personas.data[1].map((persona) => {
 								return (
-									<Card style={{ margin: "1rem" }}>
+									<Card className="specialist-card">
 										<Card.Body>
 											<img
 												src={persona.img}

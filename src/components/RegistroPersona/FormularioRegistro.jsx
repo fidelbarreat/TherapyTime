@@ -54,8 +54,7 @@ function FormularioRegistro() {
 		} catch (error) {
 			console.log(error.message);
 		}
-
-		history.push("/");
+				history.push("/Perfil");
 	};
 
 	return (
@@ -89,8 +88,12 @@ function FormularioRegistro() {
 											id="password"
 											type="password"
 											placeholder="Ingresa tu contraseña"
+											pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+											title="Por favor incluya al menos una mayúscula, una minúscula y un número."
+											required
 											value={values.password}
 											onChange={handleOnChange}
+											minlength="8" 
 										/>
 
 										<Form.Text className="text-muted">

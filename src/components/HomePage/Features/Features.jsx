@@ -1,6 +1,9 @@
 import React from 'react';
 import { Container, Row, Card} from 'react-bootstrap';
 import logo from '../../../images/logo-therapytime.png';
+import privacidad from '../../../images/privacidad.png';
+import seguridad from '../../../images/seguridad.png';
+import soporte from '../../../images/soporte.png';
 import "./features.css";
 
 function Features() {
@@ -8,15 +11,15 @@ function Features() {
     const features = [{
         name: "Privacidad",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
-        url: ""
+        url: privacidad
     },{
         name: "Seguridad",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
-        url: ""
+        url: seguridad
     },{
         name: "Soporte 24/7",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
-        url: ""
+        url: soporte
     }]
 
     return(

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { auth, db } from "../../utils/firebase-config";
 import { Form, Button, Container, Col, Row, Card } from "react-bootstrap";
 import styled from 'styled-components';
+import boy1 from '../../images/boy1.png';
 
 var [values, setValues] = [{}, () => {}];
 
@@ -57,7 +58,7 @@ const FormularioModPerfil = () => {
 										</Form.Group>
 
 										<Form.Group className="mb-3" controlId="formBasicName2">
-											<Form.Label>Name</Form.Label>
+											<Form.Label>Nombre</Form.Label>
 											<Form.Control
 												className="name"
 												type="text"
@@ -70,7 +71,7 @@ const FormularioModPerfil = () => {
 										</Form.Group>
 
 										<Form.Group className="mb-3" controlId="formBasicDate2">
-											<Form.Label>Fecha de nacimineto</Form.Label>
+											<Form.Label>Fecha de nacimiento</Form.Label>
 											<Form.Control
 												className="date"
 												type="date"
@@ -113,6 +114,13 @@ const FormularioModPerfil = () => {
 								</Card.Text>
 							</Card.Body>
 						</Card>
+					</Col>
+					<Col sm={6}>
+					<img
+												src={boy1}
+												alt="" 
+												width="50%"
+											/>
 					</Col>
 				</Row>
 			</Container>

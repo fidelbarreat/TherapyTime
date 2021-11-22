@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { db, auth, googleProvider } from "../../utils/firebase-config";
 import { UserContext } from "../UserContext";
 import { useState } from "react";
-import './formularioLogin.css';
+import "./formularioLogin.css";
 import image from "../../images/login.png";
 import { Form, Button, Container, Col, Row, Card } from "react-bootstrap";
 
@@ -51,20 +51,22 @@ function FormularioLogin() {
 				console.log(err);
 			});
 
-		history.push("/");
+		history.push("/Perfil");
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await auth.signInWithEmailAndPassword(values.email, values.password);
-		history.push("/");
+		history.push("/Perfil");
 	};
 
 	return (
 		<div className="login-container">
 			<Container>
 				<Row>
-					<Col sm={6}><img src={image} alt="" width="100%"/></Col>
+					<Col sm={6}>
+						<img src={image} alt="" width="100%" />
+					</Col>
 					<Col sm={6}>
 						<Card className="card">
 							<Card.Body>
@@ -125,7 +127,6 @@ function FormularioLogin() {
 							</Card.Body>
 						</Card>
 					</Col>
-			
 				</Row>
 			</Container>
 		</div>
