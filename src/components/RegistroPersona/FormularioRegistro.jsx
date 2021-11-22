@@ -2,11 +2,16 @@ import React from "react";
 import { useState } from "react";
 import { auth, db, st } from "../../utils/firebase-config";
 import { useHistory } from "react-router-dom";
-import { Form, Button, Container, Card, Col, Row } from "react-bootstrap";
+import { Form, Button, Container, Card, Col, Row, Toast } from "react-bootstrap";
 import image from "../../images/register.png";
 import "./FormularioRegistro.css";
+import { Formik } from 'formik';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure()
 function FormularioRegistro() {
+
 	const history = useHistory();
 	const [values, setValues] = useState({
 		email: "",
@@ -15,9 +20,9 @@ function FormularioRegistro() {
 		fecha_de_nacimiento: "",
 		telefono: "",
 		tipo_de_usuario: "",
-		file: "",
+		file: ""
 	});
-
+	
 	const handleOnFile = async (e) => {
 		try {
 			const archivolocal = e.target.files[0];
@@ -29,35 +34,12 @@ function FormularioRegistro() {
 			console.log(error.message);
 		}
 	};
-
-	const handleOnChange = (e) => {
-		const { value, name: inputName } = e.target;
-		setValues({ ...values, [inputName]: value });
-	};
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const response = await auth.createUserWithEmailAndPassword(
-			values.email,
-			values.password
-		);
-
-		console.log(values);
-
-		try {
-			db.collection("users")
-				.doc(response.user.uid)
-				.set(values)
-				.catch((err) => {
-					console.log(err);
-				});
-		} catch (error) {
-			console.log(error.message);
-		}
-				history.push("/Perfil");
-	};
+  
 
 	return (
+
+		<>
+
 		<Container className="containerForm align-middle">
 			<Row>
 				<Col sm={6}>
@@ -66,6 +48,124 @@ function FormularioRegistro() {
 							<Card.Title>Registro</Card.Title>
 							{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
 							<Card.Text>
+								
+								<Formik
+       								initialValues={{ email: "",
+									   password: "",
+									   nombre: "",
+									   fecha_de_nacimiento: "",
+									   telefono: "",
+									   tipo_de_usuario: "",
+									   file: ""
+ 										}}
+
+       								validate={values => {
+         							const errors = {};
+         							if (!values.email) {
+           								errors.email = 'Campo requerido';
+         							} else if (
+           								!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+         							) {
+           								errors.email = 'Dirección de correo inválido';
+         							}
+
+									if (!values.password) {
+									errors.password = 'Campo requerido';
+									} else if (
+										!/^.{8,12}$/i.test(values.password)
+									) {
+										errors.password = 'Entre 8 y 12 caracteres';
+									}
+							
+									if (!values.telefono) {
+										errors.telefono = 'Campo requerido';
+									} else if (
+										!/^.{10}$/i.test(values.telefono)
+									) {
+										errors.telefono = 'Numero de teléfono inválido';
+									}
+
+									if (!values.nombre) {
+										errors.nombre = 'Campo requerido';
+								  	} else if (
+										!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/i.test(values.nombre)
+								  	) {
+										errors.nombre = 'Nombre inválido';
+								  	}
+							
+									if (!values.fecha_de_nacimiento) {
+										errors.fecha_de_nacimiento = 'Campo requerido';
+								  	}
+									
+									if (!values.tipo_de_usuario) {
+										errors.tipo_de_usuario = 'Campo requerido';
+								  	}
+
+									return errors;
+       								}}
+
+								   
+       							onSubmit={ async (values, { setSubmitting }) => {
+
+									try {
+										const response = await auth.createUserWithEmailAndPassword(
+											values.email,
+											values.password)
+
+											if (values.tipo_de_usuario == "Especialista") {
+												try {
+												db.collection("especialistas_pendientes")
+													.doc(response.user.uid)
+													.set(values)
+													.catch((err) => {
+														console.log(err);
+													});
+												} catch (error) {
+													console.log(error.message);
+												}
+												
+												toast('Registro exitoso.')
+												history.push("/");
+												setSubmitting(false);
+												
+											} else if (values.tipo_de_usuario == "Paciente") {
+	
+												try {
+													db.collection("pacientes")
+														.doc(response.user.uid)
+														.set(values)
+														.catch((err) => {
+															console.log(err);
+														});
+												} catch (error) {
+													console.log(error.message);
+												}
+
+												toast('Registro exitoso.')
+												history.push("/");
+												setSubmitting(false);						
+												}
+
+										} catch (error) {
+											toast('Usuario existente')
+										}
+										
+	
+										
+       									}}
+								
+     							>
+       							{({
+         						values,
+         						errors,
+         						touched,
+         						handleBlur,
+								handleChange,
+								isSubmitting,
+								handleSubmit
+							
+       							}) => (
+								
 								<Form className="form" onSubmit={handleSubmit}>
 									<Form.Group className="mb-3" controlId="formBasicEmail">
 										<Form.Label>Correo</Form.Label>
@@ -76,8 +176,11 @@ function FormularioRegistro() {
 											type="email"
 											placeholder="Ingresa tu correo"
 											value={values.email}
-											onChange={handleOnChange}
+											onChange={handleChange}
+											onBlur={handleBlur}
 										/>
+										{errors.email && touched.email && errors.email}
+
 									</Form.Group>
 
 									<Form.Group className="mb-3" controlId="formBasicPassword">
@@ -92,13 +195,26 @@ function FormularioRegistro() {
 											title="Por favor incluya al menos una mayúscula, una minúscula y un número."
 											required
 											value={values.password}
-											onChange={handleOnChange}
-											minlength="8" 
+											onChange={handleChange}
+           							 		onBlur={handleBlur}
 										/>
+										{errors.password && touched.password && errors.password}
+									</Form.Group>
 
-										<Form.Text className="text-muted">
-											Nunca compartas tu clave con nadie.
-										</Form.Text>
+									<Form.Group className="mb-3" controlId="formBasicPhone">
+										<Form.Label>Teléfono</Form.Label>
+										<Form.Control
+											keyboardType="numeric"
+											className="phone"
+											type="number"
+											id="telefono"
+											placeholder="Ingrese su número telefónico"
+											name="telefono"
+											value={values.telefono}
+											onChange={handleChange}
+           							 		onBlur={handleBlur}
+										/>
+										{errors.telefono && touched.telefono && errors.telefono}
 									</Form.Group>
 
 									<Form.Group className="mb-3" controlId="formBasicName">
@@ -110,9 +226,13 @@ function FormularioRegistro() {
 											placeholder="Ingrese su nombre"
 											name="nombre"
 											value={values.nombre}
-											onChange={handleOnChange}
+											onChange={handleChange}
+           							 		onBlur={handleBlur}
 										/>
+										{errors.nombre && touched.nombre && errors.nombre}
 									</Form.Group>
+
+									
 
 									<Form.Group className="mb-3" controlId="formBasicDate">
 										<Form.Label>Fecha de nacimiento</Form.Label>
@@ -122,21 +242,10 @@ function FormularioRegistro() {
 											id="fecha_de_nacimiento"
 											name="fecha_de_nacimiento"
 											value={values.fecha_de_nacimiento}
-											onChange={handleOnChange}
+											onChange={handleChange}
+											onBlur={handleBlur}
 										/>
-									</Form.Group>
-
-									<Form.Group className="mb-3" controlId="formBasicPhone">
-										<Form.Label>Teléfono</Form.Label>
-										<Form.Control
-											className="phone"
-											type="number"
-											id="telefono"
-											placeholder="Ingrese su número telefónico"
-											name="telefono"
-											value={values.telefono}
-											onChange={handleOnChange}
-										/>
+										{errors.fecha_de_nacimiento && touched.fecha_de_nacimiento && errors.fecha_de_nacimiento}
 									</Form.Group>
 
 									<Form.Group className="mb-2" controlId="formBasicSpecialist">
@@ -147,8 +256,10 @@ function FormularioRegistro() {
 											id="especialista"
 											name="tipo_de_usuario"
 											value="Especialista"
-											onChange={handleOnChange}
+											onChange={handleChange}
+											onBlur={handleBlur}
 										/>
+										{errors.tipo_de_usuario && touched.tipo_de_usuario && errors.tipo_de_usuario}
 									</Form.Group>
 
 									<Form.Group className="mb-2" controlId="formBasicPacient">
@@ -159,8 +270,10 @@ function FormularioRegistro() {
 											id="paciente"
 											name="tipo_de_usuario"
 											value="Paciente"
-											onChange={handleOnChange}
+											onChange={handleChange}
+											onBlur={handleBlur}
 										/>
+										{errors.tipo_de_usuario && touched.tipo_de_usuario && errors.tipo_de_usuario}
 									</Form.Group>
 
 									<Form.Group className="mb-1" controlId="formBasicFile">
@@ -181,19 +294,25 @@ function FormularioRegistro() {
 												accept=".pdf"
 												name="file"
 												onChange={handleOnFile}
+												onBlur={handleBlur}
 											/>
 										</div>
 									</Form.Group>
 
 									<Button
+										disabled={isSubmitting}
 										className="submitRegister"
 										variant="primary"
 										type="submit"
-										onClick={handleSubmit}
 									>
 										Crear
 									</Button>
+
+
 								</Form>
+
+       							)}
+     							</Formik>	
 							</Card.Text>
 						</Card.Body>
 					</Card>
@@ -203,6 +322,9 @@ function FormularioRegistro() {
 				</Col>
 			</Row>
 		</Container>
+
+		</>
+
 	);
 }
 
