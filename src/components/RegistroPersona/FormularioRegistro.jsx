@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { auth, db, st } from "../../utils/firebase-config";
 import { useHistory } from "react-router-dom";
-import { Form, Button, Container, Card, Col, Row, Toast } from "react-bootstrap";
+import { Form, Button, Container, Card, Col, Row } from "react-bootstrap";
 import image from "../../images/register.png";
 import "./FormularioRegistro.css";
 import { Formik } from 'formik';
@@ -22,7 +22,7 @@ function FormularioRegistro() {
 		tipo_de_usuario: "",
 		file: ""
 	});
-	
+
 	const handleOnFile = async (e) => {
 		try {
 			const archivolocal = e.target.files[0];
@@ -48,14 +48,16 @@ function FormularioRegistro() {
 							{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
 							<Card.Text>
 								
-								<Formik
+								<Formik	
        								initialValues={{ email: "",
 									   password: "",
 									   nombre: "",
 									   fecha_de_nacimiento: "",
 									   telefono: "",
 									   tipo_de_usuario: "",
-									   file: ""
+									   file: "",
+									   especialidad: "",
+									   rating: ""
  										}}
 
        								validate={values => {
@@ -98,6 +100,10 @@ function FormularioRegistro() {
 									
 									if (!values.tipo_de_usuario) {
 										errors.tipo_de_usuario = 'Campo requerido';
+								  	}
+
+									if (!values.especialidad) {
+										errors.especialidad = 'Campo requerido';
 								  	}
 
 									return errors;
@@ -149,11 +155,9 @@ function FormularioRegistro() {
 											toast('Usuario existente')
 										}
 										
-	
-										
        									}}
-								
      							>
+									 
        							{({
          						values,
          						errors,
@@ -161,9 +165,10 @@ function FormularioRegistro() {
          						handleBlur,
 								handleChange,
 								isSubmitting,
-								handleSubmit
+								handleSubmit,
 							
        							}) => (
+								
 								
 								<Form className="form" onSubmit={handleSubmit}>
 									<Form.Group className="mb-3" controlId="formBasicEmail">
@@ -293,9 +298,70 @@ function FormularioRegistro() {
 												onChange={handleOnFile}
 												onBlur={handleBlur}
 											/>
-										</div>
-									</Form.Group>
 
+										<br/>
+										<Form.Label>Especialidad</Form.Label>
+										<br/>
+										<br/>
+										<Form.Group className="mb-2" controlId="formBasicSpecialist">
+											<Form.Label>Psicología cognitiva</Form.Label>
+											<Form.Check
+												className="psicología cognitiva"
+												type="radio"
+												id="psicología cognitiva"
+												name="especialidad"
+												value="psicología cognitiva"
+												onChange={handleChange}
+												onBlur={handleBlur}
+											/>
+											{errors.especialidad && touched.especialidad && errors.especialidad}
+										</Form.Group>
+
+										<Form.Group className="mb-2" controlId="formBasicSpecialist">
+											<Form.Label>Neuropsicología</Form.Label>
+											<Form.Check
+												className="neuropsicología"
+												type="radio"
+												id="neuropsicología"
+												name="especialidad"
+												value="neuropsicología"
+												onChange={handleChange}
+												onBlur={handleBlur}
+											/>
+											{errors.especialidad && touched.especialidad && errors.especialidad}
+										</Form.Group>
+
+										<Form.Group className="mb-2" controlId="formBasicSpecialist">
+											<Form.Label>Psicología clínica</Form.Label>
+											<Form.Check
+												className="psicología clínica"
+												type="radio"
+												id="psicología clínica"
+												name="especialidad"
+												value="psicología clínica"
+												onChange={handleChange}
+												onBlur={handleBlur}
+											/>
+											{errors.especialidad && touched.especialidad && errors.especialidad}
+										</Form.Group>
+
+										<Form.Group className="mb-2" controlId="formBasicSpecialist">
+											<Form.Label>Psicología evolutiva</Form.Label>
+											<Form.Check
+												className="psicología evolutiva"
+												type="radio"
+												id="psicología evolutiva"
+												name="especialidad"
+												value="psicología evolutiva"
+												onChange={handleChange}
+												onBlur={handleBlur}
+											/>
+											{errors.especialidad && touched.especialidad && errors.especialidad}
+										</Form.Group>
+										</div>	
+									</Form.Group>
+									
+									<br/>
 									<Button
 										disabled={isSubmitting}
 										className="submitRegister"
