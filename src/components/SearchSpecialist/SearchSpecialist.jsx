@@ -102,10 +102,22 @@ const SearchSpecialist = () => {
         var resultadosBusqueda=tablaSpecialists.filter((elemento)=>{
 
             elemento.nombre = "" + elemento.nombre;
+            elemento.especialidad = "" + elemento.especialidad;
+            elemento.rating = "" + elemento.rating;
             if(elemento.nombre.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
             ){
                 return elemento;
+            } 
+            
+            else if (elemento.especialidad.toString().toLowerCase().includes(terminoBusqueda.toLowerCase()))
+            {
+                return elemento;
             }
+
+            else if(elemento.rating.toString().includes(terminoBusqueda)){
+                return elemento;
+            }
+
             });
 
         setSpecialists(resultadosBusqueda);
@@ -125,8 +137,8 @@ const SearchSpecialist = () => {
                     <FontAwesomeIcon icon={faSearch}/>
                 </button>
                 
-			<select onChange={onChange}>
-			{["Rating","Nombre","Especialidad"].map(name => <option value={name}>{name}</option>)}
+			<select onChange={handleChange} >
+			{["Calificación","0","1","2","3","4","5"].map(name => <option value={name}>{name}</option>)}
 			</select>
 
 			</Stack>
@@ -134,7 +146,7 @@ const SearchSpecialist = () => {
 			{specialists &&
             specialists.map((specialist) => {
                 let name = specialist.nombre;
-                let phone = specialist.telefono;
+                let especialidad = specialist.especialidad;
                 return(
                     
                     <Card className="text-center">
@@ -143,7 +155,7 @@ const SearchSpecialist = () => {
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <Card.Text>
-                            {phone}
+                            {especialidad}
                             </Card.Text>
                             <Button as={Col} className="btn-sm" variant="secondary" onClick={() => onPress(specialist)}>
                                 Ver perfil
@@ -159,7 +171,7 @@ const SearchSpecialist = () => {
                         
                         </Card.Body>
 
-                <Card.Footer className="text-muted"></Card.Footer>
+                <Card.Footer className="text-muted">Calificación: {specialist.rating}</Card.Footer>
 
                 </Card>
             )})}
