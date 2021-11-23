@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect, Component} from 'react';
 import { auth, db } from "../../utils/firebase-config";
 import { useHistory } from "react-router-dom";
 import {Container, Card, Button, Col, Stack, Form} from "react-bootstrap";
@@ -8,6 +8,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchSpecialist.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 
 const SearchSpecialist = () => {
     
@@ -29,7 +32,9 @@ const SearchSpecialist = () => {
 	const onChange = (e) => updateSelect(String(e.target.value));
 
     const [specialists, setSpecialists] = useState([]);
-    const [loadaing, setLoading] = useState(false);
+    const [tablaSpecialists, setTablaSpecialists] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [busqueda, setBusqueda] = useState('');
 
     const ref = db.collection("especialistas_pendientes");
 
@@ -42,6 +47,7 @@ const SearchSpecialist = () => {
             console.log(items)
         });
         setSpecialists([...specialists,...items]);
+        setTablaSpecialists([...specialists,...items]);
         setLoading(false);
         });
     }
@@ -86,23 +92,47 @@ const SearchSpecialist = () => {
         }
         ]
     };
+
+    const handleChange=e=>{
+        setBusqueda(e.target.value);
+        filtrar(e.target.value);
+      }
+      
+      const filtrar=(terminoBusqueda)=>{
+        var resultadosBusqueda=tablaSpecialists.filter((elemento)=>{
+
+            elemento.nombre = "" + elemento.nombre;
+            if(elemento.nombre.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+            ){
+                return elemento;
+            }
+            });
+
+        setSpecialists(resultadosBusqueda);
+      }
+
     return (
 		<Container className="text-center justify-content">
 			<h1 className="header my-4">Búsqueda de especialista</h1>
 		
 			<Stack direction="horizontal" gap={3} className="my-4">
-
-			<Form.Control className="me-auto text-center" placeholder="Inserte el especialista que desea buscar..." />
-			<Button variant="secondary">Buscar</Button>
-			<div className="vr" />
-
+ 
+                <Form.Control className="me-auto text-center" placeholder="Inserte el especialista que desea buscar..." 
+                value={busqueda}
+                onChange = {handleChange}
+                />
+                <button className="btn btn-success">
+                    <FontAwesomeIcon icon={faSearch}/>
+                </button>
+                
 			<select onChange={onChange}>
 			{["Rating","Nombre","Especialidad"].map(name => <option value={name}>{name}</option>)}
 			</select>
 
 			</Stack>
 			<Slider {...settings}>
-			{specialists && specialists.map((specialist, index) => {
+			{specialists &&
+            specialists.map((specialist) => {
                 let name = specialist.nombre;
                 let phone = specialist.telefono;
                 return(
@@ -113,7 +143,7 @@ const SearchSpecialist = () => {
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <Card.Text>
-                            {phone}, id: {index}
+                            {phone}
                             </Card.Text>
                             <Button as={Col} className="btn-sm" variant="secondary" onClick={() => onPress(specialist)}>
                                 Ver perfil
@@ -129,7 +159,7 @@ const SearchSpecialist = () => {
                         
                         </Card.Body>
 
-                <Card.Footer className="text-muted">{index}</Card.Footer>
+                <Card.Footer className="text-muted"></Card.Footer>
 
                 </Card>
             )})}
