@@ -34,7 +34,6 @@ function FormularioRegistro() {
 			console.log(error.message);
 		}
 	};
-  
 
 	return (
 
@@ -231,8 +230,6 @@ function FormularioRegistro() {
 										/>
 										{errors.nombre && touched.nombre && errors.nombre}
 									</Form.Group>
-
-									
 
 									<Form.Group className="mb-3" controlId="formBasicDate">
 										<Form.Label>Fecha de nacimiento</Form.Label>

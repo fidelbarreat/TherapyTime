@@ -41,6 +41,14 @@ function NavBar() {
 								</Nav.Link>
 							)}
 
+							{!!user && (
+								<Nav.Link>
+									<Link to="/Especialistas" className="link">
+										Especialistas
+									</Link>
+								</Nav.Link>
+							)}
+
 							{!!user ? (
 								<div>
 									<Button variant="warning" onClick={handleLogout}>

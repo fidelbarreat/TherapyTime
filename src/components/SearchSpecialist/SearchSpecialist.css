@@ -1,0 +1,23 @@
+
+/* the slides */
+.slick-slide > div {
+    margin: 0 10px;
+    height: auto;
+}
+/* the parent */
+.slick-list {
+    margin: 0 -10px;
+}
+
+.slick-slide *:focus{
+    outline: none;
+}
+
+.slick-track {
+    display: flex !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: purple;
+}
