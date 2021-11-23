@@ -1,14 +1,13 @@
 import React, {useState,useEffect} from 'react';
-import { auth, db, st } from "../../utils/firebase-config";
+import { auth, db } from "../../utils/firebase-config";
 import { useHistory } from "react-router-dom";
 import {Container, Card, Button, Col, Stack, Form} from "react-bootstrap";
+import ShowModal from './Modal';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchSpecialist.css';
-
-const titles = ["Especialidad", "Especialidad", "Especialidad", "Rating", "Rating", "Rating", "Especialidad", "Nombre", "Nombre", "Nombre", "Rating", "Rating"];
 
 const SearchSpecialist = () => {
     
@@ -16,12 +15,21 @@ const SearchSpecialist = () => {
     if( !auth.currentUser ){
         h.push('/login');
     }
-    
+
+    //Use States
+    const [modalShow, setModalShow] = useState(false);
+    const [activeItem, setActiveItem] = useState(null);
+
+    const onPress = (item) => {
+        setActiveItem(item)
+        setModalShow(true)
+    }
+
     const [selected, updateSelect] = useState();
 	const onChange = (e) => updateSelect(String(e.target.value));
 
     const [specialists, setSpecialists] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loadaing, setLoading] = useState(false);
 
     const ref = db.collection("especialistas_pendientes");
 
@@ -95,16 +103,28 @@ const SearchSpecialist = () => {
 			</Stack>
 			<Slider {...settings}>
 			{specialists && specialists.map((specialist, index) => {
+                let name = specialist.nombre;
+                let phone = specialist.telefono;
                 return(
+                    
                     <Card className="text-center">
                         <Card.Img variant="top" src="holder.js/50px50" /> 
                         
                         <Card.Body>
-                            <Card.Title>{specialist.nombre}</Card.Title>
+                            <Card.Title>{name}</Card.Title>
                             <Card.Text>
-                            {specialist.telefono}, id: {index}
+                            {phone}, id: {index}
                             </Card.Text>
-                            <Button as={Col} className="btn-sm" variant="secondary">Ver perfil</Button>{' '}
+                            <Button as={Col} className="btn-sm" variant="secondary" onClick={() => onPress(specialist)}>
+                                Ver perfil
+                            </Button>{' '}
+
+                            <ShowModal 
+                                show={modalShow}
+                                data = {activeItem}
+                                onHide={() => setModalShow(false)}
+                            />
+
                             <Button as={Col} className="btn-sm" variant="warning">Reservar</Button>
                         
                         </Card.Body>
