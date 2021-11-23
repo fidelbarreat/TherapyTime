@@ -26,7 +26,6 @@ function FormularioLogin() {
 	const handleGoogleLogin = async () => {
 		await auth.signInWithPopup(googleProvider);
 		const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
-		toast('Inicio de sesión exitoso.')
 
 		docRef
 			.get()
@@ -47,13 +46,18 @@ function FormularioLogin() {
 					docRef.set(newGoogleLogin).catch((err) => {
 						console.log(err.message);
 					});
+
+					history.push("/Perfil");
 				}
+
+				history.push("/Perfil");
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 
-		history.push("/Perfil");
+			history.push("/Perfil");
+			toast('Inicio de sesión exitoso.')
 	};
 
 	const handleSubmit = async (e) => {
