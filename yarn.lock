@@ -5427,10 +5427,17 @@
   dependencies:
     "reusify" "^1.0.4"
 
-"faye-websocket@^0.11.3", "faye-websocket@>=0.6.0", "faye-websocket@0.11.3":
+"faye-websocket@^0.11.3", "faye-websocket@0.11.3":
   "integrity" "sha512-D2y4bovYpzziGgbHYtGCMjlJM36vAl/y+xUyn1C+FVx8szd1E+86KwVw6XvYSzOP8iMpm1X0I4xJD+QtUb36OA=="
   "resolved" "https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.11.3.tgz"
   "version" "0.11.3"
+  dependencies:
+    "websocket-driver" ">=0.5.1"
+
+"faye-websocket@>=0.6.0":
+  "integrity" "sha1-SCpQWw3wrmJrlphm0710DNuWLoM="
+  "resolved" "https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz"
+  "version" "0.9.3"
   dependencies:
     "websocket-driver" ">=0.5.1"
 

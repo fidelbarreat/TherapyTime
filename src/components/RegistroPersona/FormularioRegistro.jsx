@@ -103,9 +103,7 @@ function FormularioRegistro() {
 										errors.tipo_de_usuario = 'Campo requerido';
 								  	}
 
-									if (!values.especialidad) {
-										errors.especialidad = 'Campo requerido';
-								  	}
+
 
 									return errors;
        								}}
