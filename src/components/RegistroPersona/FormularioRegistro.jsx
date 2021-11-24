@@ -20,7 +20,9 @@ function FormularioRegistro() {
 		fecha_de_nacimiento: "",
 		telefono: "",
 		tipo_de_usuario: "",
-		file: ""
+		file: "",
+		profile_pic: "",
+		description: ""
 	});
 	
 	const handleOnFile = async (e) => {
@@ -34,7 +36,6 @@ function FormularioRegistro() {
 			console.log(error.message);
 		}
 	};
-  
 
 	return (
 
@@ -56,7 +57,8 @@ function FormularioRegistro() {
 									   fecha_de_nacimiento: "",
 									   telefono: "",
 									   tipo_de_usuario: "",
-									   file: ""
+									   file: "",
+									   profile_pic: ""
  										}}
 
        								validate={values => {
