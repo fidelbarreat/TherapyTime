@@ -8,6 +8,7 @@ import "./FormularioRegistro.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure()
 function FormularioRegistro() {
 	const history = useHistory();
 	const [values, setValues] = useState({
@@ -81,7 +82,7 @@ function FormularioRegistro() {
 					}
 
 			} catch (error) {
-				toast('Usuario existente')
+				toast('Datos inválidos, verifíquelos.')
 			}
 	
 	};

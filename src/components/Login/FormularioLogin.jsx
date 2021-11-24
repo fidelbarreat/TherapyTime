@@ -9,6 +9,7 @@ import { Form, Button, Container, Col, Row, Card } from "react-bootstrap";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure()
 function FormularioLogin() {
 	const { setUser } = useContext(UserContext);
 	const history = useHistory();
@@ -41,6 +42,10 @@ function FormularioLogin() {
 						telefono: "",
 						tipo_de_usuario: "Paciente",
 						file: "",
+						especialidad: "",
+						rating: "",
+						citas: [],
+						biografia: "",
 					};
 
 					docRef.set(newGoogleLogin).catch((err) => {

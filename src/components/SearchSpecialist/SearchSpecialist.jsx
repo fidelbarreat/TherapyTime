@@ -36,7 +36,7 @@ const SearchSpecialist = () => {
     const [loading, setLoading] = useState(false);
     const [busqueda, setBusqueda] = useState('');
 
-    const ref = db.collection("especialistas_pendientes");
+    const ref = db.collection("especialistas");
 
     function getSpecialists() {
         setLoading(true);
