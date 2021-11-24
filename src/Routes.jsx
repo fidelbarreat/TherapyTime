@@ -4,6 +4,7 @@ import Home from './components/HomePage/Home';
 import Login from './components/Login/Login';
 import Registrarse from './components/RegistroPersona/Registrarse';
 import Perfil from './components/Perfil/Perfil'
+import SearchSpecialist from './components/SearchSpecialist/SearchSpecialist';
 
 
 import PrivateRoute from '../src/components/ProtectedRoutes/PrivateRoute';
@@ -18,6 +19,7 @@ function Routes() {
       
       {/* Protected Route */}
       <PrivateRoute exact path="/Perfil" component={Perfil} />
+      <PrivateRoute exact path="/Especialistas" component={SearchSpecialist} />
 
       <Route exact path="/" component={Home} />
       <Route path="*">
