@@ -151,7 +151,7 @@ const FormularioModPerfil = () => {
 											<Form.Label>{values.tipo_de_usuario}</Form.Label>
 										</Form.Group>
 
-										<Form.Group className="mb-3" controlId="formBasicBiografy2">
+										<Form.Group className="mb-3" controlId="formBasicBiography2">
 											<Form.Label>Biografía</Form.Label>
 											<Form.Control
 												className="bio"
