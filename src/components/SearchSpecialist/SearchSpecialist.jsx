@@ -1,6 +1,6 @@
 import React, {useState,useEffect, Component} from 'react';
 import { auth, db } from "../../utils/firebase-config";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import {Container, Card, Button, Col, Stack, Form} from "react-bootstrap";
 import ShowModal from './Modal';
 import Slider from "react-slick";
@@ -109,6 +109,11 @@ const SearchSpecialist = () => {
                 return elemento;
             } 
             
+            else if (terminoBusqueda === "Calificación")
+            {
+                return elemento;
+            }
+
             else if (elemento.especialidad.toString().toLowerCase().includes(terminoBusqueda.toLowerCase()))
             {
                 return elemento;
@@ -167,7 +172,9 @@ const SearchSpecialist = () => {
                                 onHide={() => setModalShow(false)}
                             />
 
-                            <Button as={Col} className="btn-sm" variant="warning">Reservar</Button>
+                            <Button as={Col} className="btn-sm" variant="warning"><Link 
+                            to={'/Reservar_Cita/'+specialist.nombre+"/"+specialist.email}>Reservar</Link>
+                            </Button>
                         
                         </Card.Body>
 
