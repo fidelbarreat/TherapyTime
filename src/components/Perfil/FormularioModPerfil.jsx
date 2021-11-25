@@ -2,19 +2,16 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { auth, db, st } from "../../utils/firebase-config";
 import { Form, Button, Container, Col, Row, Card } from "react-bootstrap";
-import styled from "styled-components";
-import boy1 from "../../images/boy1.png";
-import { Formik } from "formik";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import styled from 'styled-components';
+import boy1 from '../../images/boy1.png';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 var [values, setValues] = [{}, () => {}];
 
 const FormularioModPerfil = () => {
-	const docRef = db.collection("users").doc(auth.currentUser.uid);
-	const [image, setImage] = useState(null);
-	const [url, setUrl] = useState("");
+	const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
 
 	[values, setValues] = useState({
 		email: "",
@@ -50,7 +47,7 @@ const FormularioModPerfil = () => {
 		e.preventDefault();
 		try {
 			docRef.update(values);
-			alert("¡Tus datos se han guardado exitosamente!");
+			toast("¡Tus datos se han guardado exitosamente!");
 		} catch (error) {
 			console.log(error.message);
 		}

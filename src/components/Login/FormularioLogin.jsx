@@ -9,6 +9,7 @@ import { Form, Button, Container, Col, Row, Card } from "react-bootstrap";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure()
 function FormularioLogin() {
 	const { setUser } = useContext(UserContext);
 	const history = useHistory();
@@ -26,7 +27,6 @@ function FormularioLogin() {
 	const handleGoogleLogin = async () => {
 		await auth.signInWithPopup(googleProvider);
 		const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
-		toast('Inicio de sesión exitoso.')
 
 		docRef
 			.get()
@@ -42,18 +42,27 @@ function FormularioLogin() {
 						telefono: "",
 						tipo_de_usuario: "Paciente",
 						file: "",
+						especialidad: "",
+						rating: "",
+						citas: [],
+						biografia: "",
 					};
 
 					docRef.set(newGoogleLogin).catch((err) => {
 						console.log(err.message);
 					});
+
+					history.push("/Perfil");
 				}
+
+				history.push("/Perfil");
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 
-		history.push("/Perfil");
+			history.push("/Perfil");
+			toast('Inicio de sesión exitoso.')
 	};
 
 	const handleSubmit = async (e) => {
