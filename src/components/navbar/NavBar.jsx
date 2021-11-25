@@ -10,6 +10,8 @@ function NavBar() {
 	const history = useHistory();
 	const { user, setUser } = useContext(UserContext);
 
+	let isAdmin = user?.email === "admin@admin.com";
+
 	const handleLogout = async () => {
 		await auth.signOut();
 		setUser(null);
@@ -28,12 +30,20 @@ function NavBar() {
 					<Navbar.Collapse id="responsive-navbar-nav justify-content-end">
 						<Nav className="me-auto ">
 							<Nav.Link>
-								<Link to="/" className="link">
+								<Link to={ isAdmin? "/Admin":"/"} className="link">
 									Home
 								</Link>
 							</Nav.Link>
 
-							{!!user && (
+							{	isAdmin && (
+								<Nav.Link>
+									<Link to="/Request" className="link">
+										Solicitudes
+									</Link>
+								</Nav.Link>
+							)}
+
+							{!!user && !isAdmin && (
 								<Nav.Link>
 									<Link to="/Perfil" className="link">
 										Perfil
@@ -41,7 +51,7 @@ function NavBar() {
 								</Nav.Link>
 							)}
 							
-							{!!user && (
+							{!!user && !isAdmin && (
 								<Nav.Link>
 									<Link to="/Especialistas" className="link">
 										Especialistas
