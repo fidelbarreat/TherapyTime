@@ -56,8 +56,8 @@ function Reservar_Cita() {
 	}, []);
 
 	const [values, setValues] = useState({
-		email_specialist: email,
-		name_specialist: nombre,
+		email_specialist: atob(email),
+		name_specialist: atob(nombre),
 		name_pacient: user.name,
 		email_pacient: user.email,
 		price: "20$",
@@ -115,10 +115,10 @@ function Reservar_Cita() {
 							{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
 							<Card.Text>
 								<p>
-									Email usuario: <b>{email}</b>
+									Especialista:  <b>{atob(nombre)}</b>
 								</p>
 								<p>
-									Nombre usuario: <b>{nombre}</b>
+									Monto:  <b>$20</b>
 								</p>
 
 								<div className="contenedor">

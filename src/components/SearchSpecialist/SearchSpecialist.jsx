@@ -39,7 +39,6 @@ const SearchSpecialist = () => {
     const ref = db.collection("especialistas");
 
     function getSpecialists() {
-        setLoading(true);
         ref.onSnapshot((querySnapshot) => {
         const items = [];
         querySnapshot.forEach((doc) => {
@@ -48,13 +47,15 @@ const SearchSpecialist = () => {
         });
         setSpecialists([...specialists,...items]);
         setTablaSpecialists([...specialists,...items]);
-        setLoading(false);
         });
     }
     
     useEffect(() => {
-        getSpecialists();
-        console.log(specialists)
+        setLoading(true);
+        setTimeout(() => {
+            getSpecialists();
+            setLoading(false);
+        }, 1000)
             // eslint-disable-next-line
         }, []);
 
@@ -129,61 +130,66 @@ const SearchSpecialist = () => {
       }
 
     return (
-		<Container className="text-center justify-content">
-			<h1 className="header my-4">Búsqueda de especialista</h1>
+		<>
+                <Container className="text-center justify-content">
+                <h1 className="header my-4">Búsqueda de especialista</h1>
 		
-			<Stack direction="horizontal" gap={3} className="my-4">
- 
-                <Form.Control className="me-auto text-center" placeholder="Inserte el especialista que desea buscar..." 
-                value={busqueda}
-                onChange = {handleChange}
-                />
-                <button className="btn btn-success">
-                    <FontAwesomeIcon icon={faSearch}/>
-                </button>
+			    <Stack direction="horizontal" gap={3} className="my-4">
                 
-			<select onChange={handleChange} >
-			{["Calificación","0","1","2","3","4","5"].map(name => <option value={name}>{name}</option>)}
-			</select>
+                    <Form.Control className="me-auto text-center" placeholder="Inserte el especialista que desea buscar..." 
+                    value={busqueda}
+                    onChange = {handleChange}
+                    />
 
-			</Stack>
-			<Slider {...settings}>
-			{specialists &&
-            specialists.map((specialist) => {
-                let name = specialist.nombre;
-                let especialidad = specialist.especialidad;
-                return(
-                    
-                    <Card className="text-center">
-                        <Card.Img variant="top" src="holder.js/50px50" /> 
-                        
-                        <Card.Body>
-                            <Card.Title>{name}</Card.Title>
-                            <Card.Text>
-                            {especialidad}
-                            </Card.Text>
-                            <Button as={Col} className="btn-sm" variant="secondary" onClick={() => onPress(specialist)}>
-                                Ver perfil
-                            </Button>{' '}
+                    <button className="btn btn-success">
+                        <FontAwesomeIcon icon={faSearch}/>
+                    </button>
 
-                            <ShowModal 
-                                show={modalShow}
-                                data = {activeItem}
-                                onHide={() => setModalShow(false)}
-                            />
+			    <select onChange={handleChange} >
+			    {["Calificación","0","1","2","3","4","5"].map(name => <option value={name}>{name}</option>)}
+			    </select>
 
-                            <Button as={Col} className="btn-sm" variant="warning"><Link 
-                            to={'/Reservar_Cita/'+specialist.nombre+"/"+specialist.email}>Reservar</Link>
-                            </Button>
-                        
-                        </Card.Body>
+			    </Stack>
+			    <Slider {...settings}>
+			    {specialists &&
+                specialists.map((specialist) => {
+                    let name = specialist.nombre;
+                    let especialidad = specialist.especialidad;
+                    return(
 
-                <Card.Footer className="text-muted">Calificación: {specialist.rating}</Card.Footer>
+                        <Card className="text-center">
+                            <Card.Img variant="top" src="holder.js/50px50" /> 
 
-                </Card>
-            )})}
-            </Slider>
-		</Container>
+                            <Card.Body>
+                                <Card.Title>{name}</Card.Title>
+                                <Card.Text>
+                                {especialidad}
+                                </Card.Text>
+                                <Button as={Col} className="btn-sm" variant="secondary" onClick={() => onPress(specialist)}>
+                                    Ver perfil
+                                </Button>{' '}
+
+                                <ShowModal 
+                                    show={modalShow}
+                                    data = {activeItem}
+                                    onHide={() => setModalShow(false)}
+                                />
+
+                        <Link       
+                            to={`/Reservar_Cita/${btoa(specialist.nombre)}/${btoa(specialist.email)}`}>
+                            <Button as={Col} className="btn-sm" variant="warning">Reservar</Button>
+                        </Link>
+
+                            </Card.Body>
+
+                    <Card.Footer className="text-muted">Calificación: {specialist.rating}</Card.Footer>
+
+                    </Card>
+                )})}
+                </Slider>
+                </Container>
+		
+         </>
 	);
 
 };
