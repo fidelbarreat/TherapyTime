@@ -1,5 +1,5 @@
 .request-container{
-    max-width: 60%;
+    max-width: 80%;
     margin: 5rem auto;
     border: 1px solid rgba(217, 78, 235, 0.45);
     padding: 1rem;
@@ -15,12 +15,12 @@
 
 .request-btns{
     display: flex;
-    width: 20%;
-    justify-content: space-around;
+    justify-content: end;
 }
 
 .request-btns>button{
-    width: 40%;
+    padding: 30px;
+    margin: 0 15px;
     box-shadow: none;
     border-radius: 50%;
     border-style: solid;
@@ -33,3 +33,9 @@
     border: none;
     
 }
+
+@media (max-width: 600px) {
+    .request-btns>button{
+        padding: 5px;
+    }
+  }

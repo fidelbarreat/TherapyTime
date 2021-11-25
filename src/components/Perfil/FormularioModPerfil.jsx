@@ -13,6 +13,9 @@ var [values, setValues] = [{}, () => {}];
 const FormularioModPerfil = () => {
 	const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
 
+	const [image, setImage] = useState();
+	const [url, setUrl] = useState();
+
 	[values, setValues] = useState({
 		email: "",
 		password: "",
@@ -174,14 +177,14 @@ const FormularioModPerfil = () => {
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col sm={6} className="justify-content-center">
+					<Col sm={6} className="text-center justify-content">
 						<img
-							src={url || "http://via.placeholder.com/300"}
+							src={values.profile_pic || "http://via.placeholder.com/300"}
 							alt="firebase-image"
 							width="50%"
 						/>
-						<input type="file" onChange={handleChange} />
-						<button onClick={handleUpload}>Upload</button>
+						<Form.Control type="file" onChange={handleChange} className="inputFotoPerfil"/>
+						<Button onClick={handleUpload} className="buttonFotoPerfil">Upload</Button>
 					</Col>
 				</Row>
 			</Container>
@@ -195,6 +198,14 @@ const ProfileContainer = styled.div`
 	input::-webkit-outer-spin-button,
 	input::-webkit-inner-spin-button {
 		-webkit-appearance: none;
+	}
+
+	.inputFotoPerfil {
+		margin: 20px;
+	}
+
+	.buttonFotoPerfil {
+		padding: 5px 40px;
 	}
 
 	input[type="number"] {

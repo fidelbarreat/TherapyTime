@@ -1,0 +1,10 @@
+.cancelarCita {
+    margin: 50px 0;
+    background-color: rgb(255, 91, 66);
+    transition: 1s all ease;
+}
+
+.cancelarCita:hover {
+    background-color: red;
+    transition: 1s all ease;
+}
