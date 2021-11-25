@@ -1,0 +1,35 @@
+.request-container{
+    max-width: 60%;
+    margin: 5rem auto;
+    border: 1px solid rgba(217, 78, 235, 0.45);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.request{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.request-btns{
+    display: flex;
+    width: 20%;
+    justify-content: space-around;
+}
+
+.request-btns>button{
+    width: 40%;
+    box-shadow: none;
+    border-radius: 50%;
+    border-style: solid;
+    background-color: white;
+}
+
+.request-btns>button:hover{
+
+    background-color: rgba(217, 78, 235, 0.45);
+    border: none;
+    
+}
