@@ -25,7 +25,10 @@ const FormularioModPerfil = () => {
 		tipo_de_usuario: "",
 		file: "",
 		profile_pic: "",
-		description: "",
+		especialidad: "",
+		rating: "",
+		citas: [],
+		biografia: "",
 	});
 
 	useEffect(() => {
@@ -159,7 +162,7 @@ const FormularioModPerfil = () => {
 												id="biografia"
 												placeholder="Ingrese una breve descripción suya"
 												name="biografia"
-												value={values.description}
+												value={values.biografia}
 												onChange={handleOnChange}
 											/>
 										</Form.Group>
