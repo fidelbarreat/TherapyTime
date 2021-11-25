@@ -220,7 +220,7 @@ function FormularioRegistro() {
 												type="radio"
 												id="psicología cognitiva"
 												name="especialidad"
-												value="psicología cognitiva"
+												value="Psicología cognitiva"
 												onChange={handleOnChange}
 											/>
 										</Form.Group>
@@ -232,7 +232,7 @@ function FormularioRegistro() {
 												type="radio"
 												id="neuropsicología"
 												name="especialidad"
-												value="neuropsicología"
+												value="Neuropsicología"
 												onChange={handleOnChange}
 											/>
 										</Form.Group>
@@ -244,7 +244,7 @@ function FormularioRegistro() {
 												type="radio"
 												id="psicología clínica"
 												name="especialidad"
-												value="psicología clínica"
+												value="Psicología clínica"
 												onChange={handleOnChange}
 											/>
 										</Form.Group>
@@ -256,7 +256,7 @@ function FormularioRegistro() {
 												type="radio"
 												id="psicología evolutiva"
 												name="especialidad"
-												value="psicología evolutiva"
+												value="Psicología evolutiva"
 												onChange={handleOnChange}
 											/>
 										</Form.Group>

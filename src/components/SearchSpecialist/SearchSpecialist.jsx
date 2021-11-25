@@ -1,7 +1,7 @@
 import React, {useState,useEffect, Component} from 'react';
 import { auth, db } from "../../utils/firebase-config";
 import { useHistory, Link } from "react-router-dom";
-import {Container, Card, Button, Col, Stack, Form} from "react-bootstrap";
+import {Container, Card, Button, Col, Stack, Form, Row} from "react-bootstrap";
 import ShowModal from './Modal';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
@@ -105,7 +105,7 @@ const SearchSpecialist = () => {
             elemento.nombre = "" + elemento.nombre;
             elemento.especialidad = "" + elemento.especialidad;
             elemento.rating = "" + elemento.rating;
-            if(elemento.nombre.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+            if(elemento.nombre.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(terminoBusqueda.toLowerCase())
             ){
                 return elemento;
             } 
@@ -115,7 +115,7 @@ const SearchSpecialist = () => {
                 return elemento;
             }
 
-            else if (elemento.especialidad.toString().toLowerCase().includes(terminoBusqueda.toLowerCase()))
+            else if (elemento.especialidad.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(terminoBusqueda.toLowerCase()))
             {
                 return elemento;
             }
@@ -150,23 +150,22 @@ const SearchSpecialist = () => {
 			    </select>
 
 			    </Stack>
-			    <Slider {...settings}>
+                <Row>
 			    {specialists &&
                 specialists.map((specialist) => {
                     let name = specialist.nombre;
                     let especialidad = specialist.especialidad;
                     return(
-
-                        <Card className="text-center">
-                            <Card.Img variant="top" src="holder.js/50px50" /> 
-
+                        
+                        <Col xs= {6}>
+                        <Card className="text-center" border={'dark'}>
                             <Card.Body>
                                 <Card.Title>{name}</Card.Title>
                                 <Card.Text>
                                 {especialidad}
                                 </Card.Text>
                                 <Button as={Col} className="btn-sm" variant="secondary" onClick={() => onPress(specialist)}>
-                                    Ver perfil
+                                    Descripción
                                 </Button>{' '}
 
                                 <ShowModal 
@@ -177,7 +176,7 @@ const SearchSpecialist = () => {
 
                         <Link       
                             to={`/Reservar_Cita/${btoa(specialist.nombre)}/${btoa(specialist.email)}`}>
-                            <Button as={Col} className="btn-sm" variant="warning">Reservar</Button>
+                            <Button as={Col} className="btn-sm my-2" variant="warning">Reservar</Button>
                         </Link>
 
                             </Card.Body>
@@ -185,8 +184,9 @@ const SearchSpecialist = () => {
                     <Card.Footer className="text-muted">Calificación: {specialist.rating}</Card.Footer>
 
                     </Card>
+                    </Col>
                 )})}
-                </Slider>
+                </Row>
                 </Container>
 		
          </>

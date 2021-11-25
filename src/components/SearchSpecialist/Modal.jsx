@@ -16,18 +16,11 @@ function ShowModal(props){
             </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Especialidad: ayudar gente</h4>
+                <h4>Especialidad: {props.data?.especialidad}</h4>
                 <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros.
+                    {props.data?.biografia}
                 </p>
-                <h4>Rating: {props.data?.telefono}</h4>
-                <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros.
-                </p>
+                <h4>Rating: {props.data?.rating}</h4>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
