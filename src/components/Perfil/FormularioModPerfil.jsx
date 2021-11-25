@@ -31,7 +31,7 @@ const FormularioModPerfil = () => {
 	useEffect(() => {
 		docRef.get().then((doc) => {
 			setValues(doc.data());
-			console.log(values);
+			console.debug(values);
 		});
 	}, []);
 
