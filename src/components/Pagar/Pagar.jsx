@@ -42,6 +42,7 @@ function Pagar() {
 		rating: "",
 		citas: [],
 		biografia: "",
+		uid: ""
 	});
 
 	[info_specialist, setInfo_specialist] = useState({
@@ -57,6 +58,7 @@ function Pagar() {
 		rating: "",
 		citas: [],
 		biografia: "",
+		uid: ""
 	});
 
 	const handleCancel = async (e) => {
@@ -81,7 +83,7 @@ function Pagar() {
 		docPacient.get().then((doc) => {
 			setInfo_pacient(doc.data());
 			
-			docSpecialist = docSpecialist.doc(info_pacient.citas[info_pacient.citas.length - 1].email_specialist);
+			docSpecialist = docSpecialist.doc(info_pacient.citas[info_pacient.citas.length - 1].uid_specialist);
 			docSpecialist.get().then((esp) => {
 				console.debug(esp.data());
 				setInfo_specialist(esp.data());

@@ -57,10 +57,10 @@ function Reservar_Cita() {
 	}, []);
 
 	const [values, setValues] = useState({
-		email_specialist: atob(email),
+		uid_specialist: atob(email),
 		name_specialist: atob(nombre),
 		name_pacient: user.name,
-		email_pacient: user.email,
+		uid_pacient: auth.currentUser.uid,
 		price: "20$",
 		dateTime: "",
 		comentario: "",
@@ -74,7 +74,7 @@ function Reservar_Cita() {
 		e.preventDefault();
 		let cita_repetida = false;
 		for (let consulta of consultas) {
-			if (atob(email) == consulta.email_specialist && fecha == consulta.dateTime) {
+			if (atob(email) == consulta.uid_specialist && fecha == consulta.dateTime) {
 				cita_repetida = true;
 				break;
 			}

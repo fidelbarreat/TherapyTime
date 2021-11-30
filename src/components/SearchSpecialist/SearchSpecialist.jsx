@@ -175,7 +175,7 @@ const SearchSpecialist = () => {
                                 />
 
                         <Link       
-                            to={`/Reservar_Cita/${btoa(specialist.nombre)}/${btoa(specialist.email)}`}>
+                            to={`/Reservar_Cita/${btoa(specialist.nombre)}/${btoa(specialist.uid)}`}>
                             <Button as={Col} className="btn-sm my-2" variant="warning">Reservar</Button>
                         </Link>
 
