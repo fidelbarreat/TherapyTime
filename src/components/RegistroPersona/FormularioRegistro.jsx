@@ -19,6 +19,7 @@ function FormularioRegistro() {
 		telefono: "",
 		tipo_de_usuario: "",
 		file: "",
+		profile_pic: "",
 		especialidad: "",
 		rating: "",
 		citas: [],

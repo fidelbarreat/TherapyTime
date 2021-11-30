@@ -18,14 +18,18 @@ import Paypal from "./Paypal";
 import image from "../../images/login.png";
 import "./Pagar.css";
 
+var [info_pacient, setInfo_pacient] = [{}, () => {}];
+var [info_specialist, setInfo_specialist] = [{}, () => {}];
 function Pagar() {
 	const { user, setUser } = useContext(UserContext);
-  console.debug(auth.currentUser.uid);
+
+	console.debug(auth.currentUser.uid);
 	const docPacient = db.collection("pacientes").doc(auth.currentUser.uid);
+	let docSpecialist = db.collection("especialistas");
 	const history = useHistory();
 	const [checkout, setCheckOut] = useState(false);
 
-	const [info_pacient, setInfo_pacient] = useState({
+	[info_pacient, setInfo_pacient] = useState({
 		email: "",
 		password: "",
 		nombre: "",
@@ -33,6 +37,22 @@ function Pagar() {
 		telefono: "",
 		tipo_de_usuario: "",
 		file: "",
+		profile_pic: "",
+		especialidad: "",
+		rating: "",
+		citas: [],
+		biografia: "",
+	});
+
+	[info_specialist, setInfo_specialist] = useState({
+		email: "",
+		password: "",
+		nombre: "",
+		fecha_de_nacimiento: "",
+		telefono: "",
+		tipo_de_usuario: "",
+		file: "",
+		profile_pic: "",
 		especialidad: "",
 		rating: "",
 		citas: [],
@@ -42,6 +62,7 @@ function Pagar() {
 	const handleCancel = async (e) => {
 		e.preventDefault();
 
+		console.debug(info_pacient);
 		const temporal_p = info_pacient.citas;
 		temporal_p.pop();
 		setInfo_pacient({ ...info_pacient, citas: temporal_p });
@@ -58,31 +79,56 @@ function Pagar() {
 
 	useEffect(() => {
 		docPacient.get().then((doc) => {
-      console.debug(doc.data());
 			setInfo_pacient(doc.data());
+			
+			docSpecialist = docSpecialist.doc(info_pacient.citas[info_pacient.citas.length - 1].email_specialist);
+			docSpecialist.get().then((esp) => {
+				console.debug(esp.data());
+				setInfo_specialist(esp.data());
+			});
 		});
 	}, []);
+
+	// const getEspecialista = async (uid) => {
+	// 	docSpecialist.get().then((doc) => {
+	// 		console.debug(doc.data());
+	// 		setInfo_specialist(doc.data());
+	// 		return Promise.resolve(1);
+	// 	});
+	// }
 
 	const handleSubmit = async (e) => {
 		//e.preventDefault();
 
 		const position = info_pacient.citas.length - 1;
-    console.debug(info_pacient);
-    console.debug(info_pacient.citas);
-    console.debug(info_pacient.citas[position]);
-		try {
-			db.collection("consultas")
-				.doc()
-				.set(info_pacient.citas[position])
-				.catch((err) => {
-					console.log(err);
-				});
-		} catch (error) {
-			console.log(error.message);
-		}
+		if (
+			info_pacient &&
+			info_pacient.citas &&
+			info_pacient.citas[position]
+		) {
+			try {
+				//cambiar por uid
+				db.collection("consultas")
+					.doc()
+					.set(info_pacient.citas[position])
+					.catch((err) => {
+						console.log(err);
+					});
+				console.debug(info_specialist);
+				const temporal_pa = info_specialist.citas;
+				temporal_pa.push(info_pacient.citas[position]);
+				setInfo_specialist({ ...info_specialist, citas: temporal_pa });
+				console.debug(info_specialist);
+				docSpecialist.update(info_specialist);
+			} catch (error) {
+				console.log(error.message);
+			}
 
-		toast("Pago exitoso, su cita fue agendada");
-		history.push("/");
+			toast("Pago exitoso, su cita fue agendada");
+			history.push("/");
+		} else {
+			toast("Error");
+		}
 	};
 
 	return (
@@ -95,16 +141,29 @@ function Pagar() {
 					<Col sm={6}>
 						<Card className="card">
 							<Card.Body>
-								<Card.Title className="text-center justify-content">Checkout</Card.Title>
+								<Card.Title className="text-center justify-content">
+									Checkout
+								</Card.Title>
 								{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
 								<Card.Text>
-									<Paypal onchange={(e) => { handleSubmit(e) }}/>
+									<Paypal
+										onchange={(e) => {
+											handleSubmit(e);
+										}}
+									/>
 									<Button
 										className="cancelarCita"
 										type="submit"
 										onClick={handleCancel}
 									>
 										Cancelar cita
+									</Button>
+									<Button
+										className="cancelarCita"
+										type="submit"
+										onClick={handleSubmit}
+									>
+										Pagar
 									</Button>
 								</Card.Text>
 							</Card.Body>
