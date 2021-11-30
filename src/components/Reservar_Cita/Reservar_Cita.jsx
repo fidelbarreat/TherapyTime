@@ -47,6 +47,7 @@ function Reservar_Cita() {
 		rating: "",
 		citas: [],
 		biografia: "",
+		uid: ""
 	});
 
 	useEffect(() => {
@@ -73,7 +74,7 @@ function Reservar_Cita() {
 		e.preventDefault();
 		let cita_repetida = false;
 		for (let consulta of consultas) {
-			if (email == consulta.email_specialist && fecha == consulta.dateTime) {
+			if (atob(email) == consulta.email_specialist && fecha == consulta.dateTime) {
 				cita_repetida = true;
 				break;
 			}
