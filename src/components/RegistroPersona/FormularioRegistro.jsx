@@ -23,6 +23,7 @@ function FormularioRegistro() {
 		rating: "",
 		citas: [],
 		biografia: "",
+		isOnline: true,
 	});
 
 	const handleOnFile = async (e) => {
@@ -42,18 +43,43 @@ function FormularioRegistro() {
 		setValues({ ...values, [inputName]: value });
 	};
 
+	const {
+	email,
+	password,
+	nombre,
+	fecha_de_nacimiento,
+	telefono,
+	tipo_de_usuario,
+	file,
+	especialidad,
+	rating,
+	citas,
+	biografia,
+	isOnline } = values;
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			const response = await auth.createUserWithEmailAndPassword(
 				values.email,
 				values.password)
-
 				if (values.tipo_de_usuario == "Especialista") {
 					try {
 					db.collection("especialistas_pendientes")
 						.doc(response.user.uid)
-						.set(values)
+						.set({ uid: response.user.uid,
+							email,
+							password,
+							nombre,
+							fecha_de_nacimiento,
+							telefono,
+							tipo_de_usuario,
+							file,
+							especialidad,
+							rating,
+							citas,
+							biografia,
+							isOnline })
 						.catch((err) => {
 							console.log(err);
 						});
@@ -69,7 +95,19 @@ function FormularioRegistro() {
 					try {
 						db.collection("pacientes")
 							.doc(response.user.uid)
-							.set(values)
+							.set({uid: response.user.uid,
+								email,
+								password,
+								nombre,
+								fecha_de_nacimiento,
+								telefono,
+								tipo_de_usuario,
+								file,
+								especialidad,
+								rating,
+								citas,
+								biografia,
+								isOnline })
 							.catch((err) => {
 								console.log(err);
 							});

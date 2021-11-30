@@ -54,7 +54,7 @@ export default function AdminRequest(){
     
     try{
     
-      db.collection("especialistas").doc(request.email).set(request)
+      db.collection("especialistas").doc(request.uid).set(request)
       
     } catch (error) {
       console.log(error.message);
