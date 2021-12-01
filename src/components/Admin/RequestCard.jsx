@@ -11,6 +11,7 @@ const RequestCard = ({ request, onReject, onAccept }) => {
 					<Col sm={8}>
 						<div className="request-info">
 							<h3>{request.nombre}</h3>
+							<h5>{request.especialidad}</h5>
 							{request.file !== "" ? (
 								<a href={request.file} download>
 									Descargar Curriculum
@@ -18,6 +19,7 @@ const RequestCard = ({ request, onReject, onAccept }) => {
 							) : (
 								<h6>No existe Curriculum</h6>
 							)}
+							<br></br>
 						</div>
 					</Col>
 					<Col sm={4} className="text-right text-md-right">
