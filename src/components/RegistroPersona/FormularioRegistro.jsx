@@ -42,9 +42,9 @@ function FormularioRegistro() {
 	};
 
 	const handleOnChange = (e) => {
-		setField(inputName, e.target.value);
 		const { value, name: inputName } = e.target;
 		setValues({ ...values, [inputName]: value });
+		setField(inputName, e.target.value);
 	};
 
 	const {
@@ -63,17 +63,24 @@ function FormularioRegistro() {
 	} = values;
 
 	const findFormErrors = () => {
-		const { email } = form;
+		const { email, nombre, password, fecha_de_nacimiento, telefono, paciente, especialista, especialidad } = form;
 		const newErrors = {};
+		console.debug();
 		// name errors
-		if (!email || email === "") newErrors.name = "cannot be blank!";
+		if (!email || email === "" || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) newErrors.email = "Dirección de correo inválido";
 		// else if ( name.length > 30 ) newErrors.name = 'name is too long!'
 		// // food errors
-		// if ( !food || food === '' ) newErrors.food = 'select a food!'
+		 if ( !nombre || nombre === '' || !/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/i.test(nombre)) newErrors.nombre = 'Nombre inválido'
 		// // rating errors
-		// if ( !rating || rating > 5 || rating < 1 ) newErrors.rating = 'must assign a rating between 1 and 5!'
+		 if ( !password || password ==="" || !/^.{8,12}$/i.test(password)) newErrors.password = 'Entre 8 y 12 caracteres'
 		// // comment errors
-		// if ( !comment || comment === '' ) newErrors.comment = 'cannot be blank!'
+		 if ( !telefono || telefono === '' || !/^.{10}$/i.test(telefono)) newErrors.telefono = 'Telefono inválido'
+		
+		 if ( !fecha_de_nacimiento || fecha_de_nacimiento === '') newErrors.nacimiento = 'Fecha inválida'
+
+		 if ( !especialidad || especialidad === '') newErrors.especialidad = 'Seleccione una'
+
+		 if ( !values.tipo_de_usuario || values.tipo_de_usuario === '') newErrors.rol = 'Seleccione un rol'
 		// else if ( comment.length > 100 ) newErrors.comment = 'comment is too long!'
 
 		return newErrors;
@@ -188,10 +195,10 @@ function FormularioRegistro() {
 											placeholder="Ingresa tu correo"
 											value={values.email}
 											onChange={handleOnChange}
-											isInvalid={!!errors.name}
+											isInvalid={!!errors.email}
 										/>
 										<Form.Control.Feedback type="invalid">
-											{errors.name}
+											{errors.email}
 										</Form.Control.Feedback>
 									</Form.Group>
 
@@ -203,10 +210,13 @@ function FormularioRegistro() {
 											id="password"
 											type="password"
 											placeholder="Ingresa tu contraseña"
-											required
 											value={values.password}
 											onChange={handleOnChange}
+											isInvalid={!!errors.password}
 										/>
+										<Form.Control.Feedback type="invalid">
+											{errors.password}
+										</Form.Control.Feedback>
 
 										<Form.Text className="text-muted">
 											Nunca compartas tu clave con nadie.
@@ -223,7 +233,11 @@ function FormularioRegistro() {
 											name="nombre"
 											value={values.nombre}
 											onChange={handleOnChange}
+											isInvalid={!!errors.nombre}
 										/>
+										<Form.Control.Feedback type="invalid">
+											{errors.nombre}
+										</Form.Control.Feedback>
 									</Form.Group>
 
 									<Form.Group className="mb-3" controlId="formBasicDate">
@@ -235,7 +249,11 @@ function FormularioRegistro() {
 											name="fecha_de_nacimiento"
 											value={values.fecha_de_nacimiento}
 											onChange={handleOnChange}
+											isInvalid={!!errors.nacimiento}
 										/>
+										<Form.Control.Feedback type="invalid">
+											{errors.nacimiento}
+										</Form.Control.Feedback>
 									</Form.Group>
 
 									<Form.Group className="mb-3" controlId="formBasicPhone">
@@ -248,31 +266,37 @@ function FormularioRegistro() {
 											name="telefono"
 											value={values.telefono}
 											onChange={handleOnChange}
+											isInvalid={!!errors.telefono}
 										/>
+										<Form.Control.Feedback type="invalid">
+											{errors.telefono}
+										</Form.Control.Feedback>
 									</Form.Group>
 
 									<Form.Group className="mb-2" controlId="formBasicSpecialist">
-										<Form.Label>Especialista</Form.Label>
 										<Form.Check
+												label="Especialista"
 											className="specialist"
 											type="radio"
 											id="especialista"
 											name="tipo_de_usuario"
 											value="Especialista"
 											onChange={handleOnChange}
+											isInvalid={!!errors.rol}
 										/>
-									</Form.Group>
-
-									<Form.Group className="mb-2" controlId="formBasicPacient">
-										<Form.Label>Paciente</Form.Label>
 										<Form.Check
+												label="Paciente"
 											className="pacient"
 											type="radio"
 											id="paciente"
 											name="tipo_de_usuario"
 											value="Paciente"
 											onChange={handleOnChange}
+											isInvalid={!!errors.rol}
 										/>
+										<Form.Control.Feedback type="invalid">
+											{errors.rol}
+										</Form.Control.Feedback>
 									</Form.Group>
 
 									<Form.Group className="mb-1" controlId="formBasicFile">
@@ -298,66 +322,56 @@ function FormularioRegistro() {
 											<br />
 											<Form.Label>Especialidad</Form.Label>
 											<br />
-											<br />
+
 											<Form.Group
 												className="mb-2"
 												controlId="formBasicSpecialist"
 											>
-												<Form.Label>Psicología cognitiva</Form.Label>
 												<Form.Check
+												label="Psicología cognitiva"
 													className="psicología cognitiva"
 													type="radio"
 													id="psicología cognitiva"
 													name="especialidad"
 													value="Psicología cognitiva"
 													onChange={handleOnChange}
+													isInvalid={!!errors.especialidad}
 												/>
-											</Form.Group>
-
-											<Form.Group
-												className="mb-2"
-												controlId="formBasicSpecialist"
-											>
-												<Form.Label>Neuropsicología</Form.Label>
 												<Form.Check
+												label="Neuropsicología"
 													className="neuropsicología"
 													type="radio"
 													id="neuropsicología"
 													name="especialidad"
 													value="Neuropsicología"
 													onChange={handleOnChange}
+													isInvalid={!!errors.especialidad}
 												/>
-											</Form.Group>
-
-											<Form.Group
-												className="mb-2"
-												controlId="formBasicSpecialist"
-											>
-												<Form.Label>Psicología clínica</Form.Label>
 												<Form.Check
+												label="Psicología clínica"
 													className="psicología clínica"
 													type="radio"
 													id="psicología clínica"
 													name="especialidad"
 													value="Psicología clínica"
 													onChange={handleOnChange}
+													isInvalid={!!errors.especialidad}
 												/>
-											</Form.Group>
-
-											<Form.Group
-												className="mb-2"
-												controlId="formBasicSpecialist"
-											>
-												<Form.Label>Psicología evolutiva</Form.Label>
 												<Form.Check
+												label="Psicología evolutiva"
 													className="psicología evolutiva"
 													type="radio"
 													id="psicología evolutiva"
 													name="especialidad"
 													value="Psicología evolutiva"
 													onChange={handleOnChange}
+													isInvalid={!!errors.especialidad}
 												/>
+												<Form.Control.Feedback type="invalid">
+											{errors.especialidad}
+										</Form.Control.Feedback>
 											</Form.Group>
+
 										</div>
 									</Form.Group>
 
