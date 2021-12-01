@@ -9,6 +9,7 @@ import Reservar_Cita from './components/Reservar_Cita/Reservar_Cita';
 import Pagar from './components/Pagar/Pagar';
 import Historial from './components/Historial/Historial';
 import Feedback from './components/Feedback/Feedback';
+import Retroalimentaciones from './components/Feedback/Retroalimentaciones';
 import AdminHome from './components/Admin/AdminHome';
 import AdminRequest from './components/Admin/AdminRequest';
 
@@ -27,6 +28,7 @@ function Routes() {
       <PrivateRoute exact path="/Pagar" component={Pagar}/>
       <PrivateRoute exact path="/Historial" component={Historial}/>
       <PrivateRoute exact path="/Feedback" component={Feedback}/>
+      <PrivateRoute exact path="/Retroalimentaciones" component={Retroalimentaciones}/>
       {/* <PrivateRoute exact path="/Pagar" component={Pagar}/> */}
 
       <Route exact path="/Admin" component={AdminHome} />

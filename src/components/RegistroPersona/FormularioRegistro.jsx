@@ -21,7 +21,7 @@ function FormularioRegistro() {
 		file: "",
 		profile_pic: "",
 		especialidad: "",
-		rating: "",
+		rating: "0",
 		citas: [],
 		biografia: "",
 		isOnline: true,

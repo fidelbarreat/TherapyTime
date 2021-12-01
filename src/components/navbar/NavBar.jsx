@@ -75,6 +75,14 @@ function NavBar() {
 									</Link>
 								</Nav.Link>
 							)}
+
+							{!!user && !isAdmin &&(
+								<Nav.Link>
+									<Link to="/Retroalimentaciones" className="link">
+										Retroalimentaciones
+									</Link>
+								</Nav.Link>
+							)}
 							
 							{!!user ? (
 								<div>
