@@ -24,7 +24,6 @@ function FormularioRegistro() {
 		rating: "",
 		citas: [],
 		biografia: "",
-		isOnline: true,
 	});
 
 	const handleOnFile = async (e) => {
@@ -55,8 +54,8 @@ function FormularioRegistro() {
 	especialidad,
 	rating,
 	citas,
-	biografia,
-	isOnline } = values;
+	biografia
+	} = values;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -79,8 +78,8 @@ function FormularioRegistro() {
 							especialidad,
 							rating,
 							citas,
-							biografia,
-							isOnline })
+							biografia
+							})
 						.catch((err) => {
 							console.log(err);
 						});
@@ -107,8 +106,8 @@ function FormularioRegistro() {
 								especialidad,
 								rating,
 								citas,
-								biografia,
-								isOnline })
+								biografia
+								})
 							.catch((err) => {
 								console.log(err);
 							});

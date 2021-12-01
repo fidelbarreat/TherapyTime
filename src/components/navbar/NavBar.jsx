@@ -59,6 +59,14 @@ function NavBar() {
 								</Nav.Link>
 							)}
 
+							{!!user && !isAdmin && (
+								<Nav.Link>
+									<Link to="/Chat" className="link">
+										Chat
+									</Link>
+								</Nav.Link>
+							)}
+
 							{!!user ? (
 								<div>
 									<Button variant="warning" onClick={handleLogout}>
