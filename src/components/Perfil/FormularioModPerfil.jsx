@@ -34,19 +34,21 @@ const FormularioModPerfil = () => {
 
 	useEffect(() => {
 		if(user.tipo_de_usuario === "Especialista"){
-			if(user.file === "" || user.especialidad === ""){
-				const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
-				docRef.get().then((doc) => {
-				setValues(doc.data());
-				console.debug(values);
-			});
-			} else {
+			const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
+
+			if(docRef.uid === undefined){
 				const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
 				docRef.get().then((doc) => {
 				setValues(doc.data());
 				console.debug(values);
 			});
+			} else{
+				docRef.get().then((doc) => {
+					setValues(doc.data());
+					console.debug(values);
+				});
 			}
+					
 		}	else if(user.tipo_de_usuario === "Paciente"){
 				const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
 				docRef.get().then((doc) => {
@@ -54,12 +56,6 @@ const FormularioModPerfil = () => {
 				console.debug(values);
 			});
 
-		}	else	{
-				const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
-				docRef.get().then((doc) => {
-				setValues(doc.data());
-				console.debug(values);
-			});
 		}	
 
 	}, []);
@@ -79,24 +75,20 @@ const FormularioModPerfil = () => {
 		e.preventDefault();
 
 		if(user.tipo_de_usuario === "Especialista"){
-			if(user.file === "" || user.especialidad === ""){
 				try {
 					const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
-					docRef.update(values);
-					toast("¡Tus datos se han guardado exitosamente!");
+					if(docRef.uid === undefined){
+						const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
+						docRef.update(values);
+						toast("¡Tus datos se han guardado exitosamente!");
+					}	else{
+						docRef.update(values);
+						toast("¡Tus datos se han guardado exitosamente!");
+					}
 				} catch (error) {
 					console.log(error.message);
 				}
-			}	else{
-				try {
-					const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
-					docRef.update(values);
-					toast("¡Tus datos se han guardado exitosamente!");
-				} catch (error) {
-					console.log(error.message);
-				}
-			}		
-
+					
 		}	else if(user.tipo_de_usuario === "Paciente"){
 			try {
 				const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
