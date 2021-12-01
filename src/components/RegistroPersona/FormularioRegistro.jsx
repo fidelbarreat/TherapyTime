@@ -247,7 +247,7 @@ function FormularioRegistro() {
 												name="file"
 												onChange={handleOnFile}
 											/>
-						
+								
 										<br/>
 										<Form.Label>Especialidad</Form.Label>
 										<br/>

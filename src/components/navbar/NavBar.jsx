@@ -11,6 +11,7 @@ function NavBar() {
 	const { user, setUser } = useContext(UserContext);
 
 	let isAdmin = user?.email === "admin@admin.com";
+	let isSpecialist = user?.tipo_de_usuario === "Especialista";
 
 	const handleLogout = async () => {
 		await auth.signOut();
@@ -51,7 +52,7 @@ function NavBar() {
 								</Nav.Link>
 							)}
 							
-							{!!user && !isAdmin && (
+							{!!user && !isAdmin && !isSpecialist &&(
 								<Nav.Link>
 									<Link to="/Especialistas" className="link">
 										Especialistas

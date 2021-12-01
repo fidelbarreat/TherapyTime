@@ -29,6 +29,13 @@ export default function UserContextProvider({ children }) {
         const loggedUser = getFirstElementArrayCollection(snapshot);
         return loggedUser;
 
+    } else if(collection === "especialistas_pendientes"){
+      const usersReference = db.collection('especialistas_pendientes')
+      const snapshot = await usersReference.where('email', '==', correo).get();
+
+      if (!snapshot.size) return null;
+        const loggedUser = getFirstElementArrayCollection(snapshot);
+        return loggedUser;
     } else{
       const usersReference = db.collection('users')
       const snapshot = await usersReference.where('email', '==', correo).get();
@@ -59,8 +66,9 @@ export default function UserContextProvider({ children }) {
       if (loggedUser) {
         const profile = await getUserByEmail(loggedUser.email, "pacientes" );
         const profile2 = await getUserByEmail(loggedUser.email, "especialistas" );
+        const profile3 = await getUserByEmail(loggedUser.email, "especialistas_pendientes" );
         
-        if (!profile && !profile2) {
+        if (!profile && !profile2 && !profile3) {
           const newProfile = {
             name: loggedUser.displayName,
             email: loggedUser.email,
@@ -71,6 +79,8 @@ export default function UserContextProvider({ children }) {
           setUser(profile);
         } else if (profile2){
           setUser(profile2);
+        } else if (profile3){
+          setUser(profile3);
         }
       } else {
         setUser(null);

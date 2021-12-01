@@ -6,17 +6,18 @@ import styled from 'styled-components';
 import boy1 from '../../images/boy1.png';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from "react";
+import { UserContext } from "../UserContext";
 
 toast.configure();
 var [values, setValues] = [{}, () => {}];
 
 const FormularioModPerfil = () => {
-	const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
 
+	const { user, setUser } = useContext(UserContext);
 	const [image, setImage] = useState();
 	const [url, setUrl] = useState();
-
-	[values, setValues] = useState({
+	const [values, setValues] = useState({
 		email: "",
 		password: "",
 		nombre: "",
@@ -32,10 +33,35 @@ const FormularioModPerfil = () => {
 	});
 
 	useEffect(() => {
-		docRef.get().then((doc) => {
-			setValues(doc.data());
-			console.debug(values);
-		});
+		if(user.tipo_de_usuario === "Especialista"){
+			if(user.file === "" || user.especialidad === ""){
+				const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
+				docRef.get().then((doc) => {
+				setValues(doc.data());
+				console.debug(values);
+			});
+			} else {
+				const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
+				docRef.get().then((doc) => {
+				setValues(doc.data());
+				console.debug(values);
+			});
+			}
+		}	else if(user.tipo_de_usuario === "Paciente"){
+				const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
+				docRef.get().then((doc) => {
+				setValues(doc.data());
+				console.debug(values);
+			});
+
+		}	else	{
+				const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
+				docRef.get().then((doc) => {
+				setValues(doc.data());
+				console.debug(values);
+			});
+		}	
+
 	}, []);
 
 	const handleOnChange = (event) => {
@@ -51,14 +77,38 @@ const FormularioModPerfil = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try {
-			docRef.update(values);
-			toast("¡Tus datos se han guardado exitosamente!");
-		} catch (error) {
-			console.log(error.message);
-		}
-	};
 
+		if(user.tipo_de_usuario === "Especialista"){
+			if(user.file === "" || user.especialidad === ""){
+				try {
+					const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
+					docRef.update(values);
+					toast("¡Tus datos se han guardado exitosamente!");
+				} catch (error) {
+					console.log(error.message);
+				}
+			}	else{
+				try {
+					const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
+					docRef.update(values);
+					toast("¡Tus datos se han guardado exitosamente!");
+				} catch (error) {
+					console.log(error.message);
+				}
+			}		
+
+		}	else if(user.tipo_de_usuario === "Paciente"){
+			try {
+				const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
+				docRef.update(values);
+				toast("¡Tus datos se han guardado exitosamente!");
+			} catch (error) {
+				console.log(error.message);
+			}
+		}
+		
+	};
+	
 	const handleUpload = async (e) => {
 		const uploadTask = st.ref().child(`profile_pics/${image.name}`);
 		await uploadTask.put(image);
@@ -84,6 +134,7 @@ const FormularioModPerfil = () => {
 		// );
 	};
 
+	console.log(values.especialidad)
 	return (
 		<ProfileContainer>
 			<Container>
@@ -148,10 +199,26 @@ const FormularioModPerfil = () => {
 											/>
 										</Form.Group>
 
-										<Form.Group className="mb-3" controlId="formBasicPacient2">
-											<Form.Label>Tipo de Usuario </Form.Label>
-											<br />
-											<Form.Label>{values.tipo_de_usuario}</Form.Label>
+										<Form.Group className="mb-1" controlId="formBasicFile">
+											<div
+												className={`App ${
+													values?.tipo_de_usuario !== "Especialista"
+														? "invisible"
+														: "visible"
+												}`}
+											>
+												<Form.Label>
+													Especialidad
+												</Form.Label>
+												<Form.Control
+													className="especialidad"
+													type="text"
+													id="especialidad"
+													name="especialidad"
+													value={values.especialidad}
+													readOnly
+												/>
+											</div>
 										</Form.Group>
 
 										<Form.Group className="mb-3" controlId="formBasicBiography2">
