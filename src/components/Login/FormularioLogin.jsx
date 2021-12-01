@@ -46,6 +46,7 @@ function FormularioLogin() {
 						rating: "",
 						citas: [],
 						biografia: "",
+						uid: auth.currentUser.uid,
 					};
 
 					docRef.set(newGoogleLogin).catch((err) => {

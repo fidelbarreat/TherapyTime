@@ -43,6 +43,16 @@ function Historial() {
         
     }, []);
 
+    let opcion = "";
+    let opcion2 = "";
+    if(user.tipo_de_usuario === "Especialista"){
+        opcion = 'name_pacient'
+        opcion2 = "PACIENTE"
+    } else if (user.tipo_de_usuario === "Paciente"){
+        opcion = 'name_specialist'
+        opcion2 = "ESPECIALISTA"
+    }
+
     const columna_pacient = [
 
         {
@@ -52,8 +62,8 @@ function Historial() {
         },
 
         {   
-            name: "ESPECIALISTA",
-            selector: 'name_specialist',
+            name: opcion2,
+            selector: opcion,
             sortable: true
         },
 
