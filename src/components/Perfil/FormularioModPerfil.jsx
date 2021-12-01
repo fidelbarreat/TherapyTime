@@ -99,7 +99,7 @@ const FormularioModPerfil = () => {
 
 		}	else if(user.tipo_de_usuario === "Paciente"){
 			try {
-				const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
+				const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
 				docRef.update(values);
 				toast("¡Tus datos se han guardado exitosamente!");
 			} catch (error) {

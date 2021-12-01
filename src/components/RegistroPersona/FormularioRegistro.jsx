@@ -48,6 +48,7 @@ function FormularioRegistro() {
 	};
 
 	const {
+		profile_pic,
 		email,
 		password,
 		nombre,
@@ -128,6 +129,7 @@ function FormularioRegistro() {
 								citas,
 								biografia,
 								isOnline,
+								profile_pic,
 							})
 							.catch((err) => {
 								console.log(err);
@@ -156,6 +158,7 @@ function FormularioRegistro() {
 								citas,
 								biografia,
 								isOnline,
+								profile_pic,
 							})
 							.catch((err) => {
 								console.log(err);
