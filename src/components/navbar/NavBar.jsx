@@ -59,6 +59,14 @@ function NavBar() {
 								</Nav.Link>
 							)}
 
+							{!!user && !isAdmin && (
+								<Nav.Link>
+									<Link to="/Historial" className="link">
+										Consultas
+									</Link>
+								</Nav.Link>
+							)}
+							
 							{!!user ? (
 								<div>
 									<Button variant="warning" onClick={handleLogout}>

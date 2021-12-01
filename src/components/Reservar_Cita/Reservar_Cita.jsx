@@ -59,7 +59,7 @@ function Reservar_Cita() {
 	const [values, setValues] = useState({
 		uid_specialist: atob(email),
 		name_specialist: atob(nombre),
-		name_pacient: user.name,
+		name_pacient: user.nombre,
 		uid_pacient: auth.currentUser.uid,
 		price: "20$",
 		dateTime: "",
@@ -134,7 +134,7 @@ function Reservar_Cita() {
 											showDisabledMonthNavigation
 											showTimeSelect
 											excludeTimes={[]}
-											dateFormat="MMMM d, yyyy h:mm aa"
+											dateFormat="d/MM/yyyy h:mm aa"
 										/>
 										<br />
 										<br />

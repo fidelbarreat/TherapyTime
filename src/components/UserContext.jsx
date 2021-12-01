@@ -11,16 +11,45 @@ export default function UserContextProvider({ children }) {
     await db.collection('users').doc(uid).set(user);
   };
 
-  const getUserByEmail = async (email) => {
-    const usersReference = db.collection('users');
-    const snapshot = await usersReference.where('email', '==', email).get();
+  const getUserByEmail = async (correo, collection) => {
 
-    if (!snapshot.size) return null;
+    if(collection === "pacientes"){
+      const usersReference = db.collection('pacientes')
+      const snapshot = await usersReference.where('email', '==', correo).get();
 
-    const loggedUser = getFirstElementArrayCollection(snapshot);
+      if (!snapshot.size) return null;
+        const loggedUser = getFirstElementArrayCollection(snapshot);
+        return loggedUser;
+      
+    } else if(collection === "especialistas"){
+      const usersReference = db.collection('especialistas')
+      const snapshot = await usersReference.where('email', '==', correo).get();
 
-    return loggedUser;
+      if (!snapshot.size) return null;
+        const loggedUser = getFirstElementArrayCollection(snapshot);
+        return loggedUser;
+
+    } else{
+      const usersReference = db.collection('users')
+      const snapshot = await usersReference.where('email', '==', correo).get();
+
+      if (!snapshot.size) return null;
+        const loggedUser = getFirstElementArrayCollection(snapshot);
+        return loggedUser;
+    }
+
   };
+  
+  // const getUserByEmail = async (email) => {
+  //   const usersReference = db.collection('users');
+  //   const snapshot = await usersReference.where('email', '==', email).get();
+
+  //   if (!snapshot.size) return null;
+
+  //   const loggedUser = getFirstElementArrayCollection(snapshot);
+
+  //   return loggedUser;
+  // };
 
 
   useEffect(() => {
@@ -28,17 +57,20 @@ export default function UserContextProvider({ children }) {
     
     const unlisten = auth.onAuthStateChanged(async (loggedUser) => {
       if (loggedUser) {
-        const profile = await getUserByEmail(loggedUser.email);
-
-        if (!profile) {
+        const profile = await getUserByEmail(loggedUser.email, "pacientes" );
+        const profile2 = await getUserByEmail(loggedUser.email, "especialistas" );
+        
+        if (!profile && !profile2) {
           const newProfile = {
             name: loggedUser.displayName,
             email: loggedUser.email,
           };
           await createUser(newProfile, loggedUser.uid);
           setUser(newProfile);
-        } else {
+        } else if (profile){
           setUser(profile);
+        } else if (profile2){
+          setUser(profile2);
         }
       } else {
         setUser(null);
