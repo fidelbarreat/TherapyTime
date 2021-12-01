@@ -78,8 +78,6 @@ function FormularioRegistro() {
 		
 		 if ( !fecha_de_nacimiento || fecha_de_nacimiento === '') newErrors.nacimiento = 'Fecha inválida'
 
-		 if ( !especialidad || especialidad === '') newErrors.especialidad = 'Seleccione una'
-
 		 if ( !values.tipo_de_usuario || values.tipo_de_usuario === '') newErrors.rol = 'Seleccione un rol'
 		// else if ( comment.length > 100 ) newErrors.comment = 'comment is too long!'
 
@@ -335,7 +333,6 @@ function FormularioRegistro() {
 													name="especialidad"
 													value="Psicología cognitiva"
 													onChange={handleOnChange}
-													isInvalid={!!errors.especialidad}
 												/>
 												<Form.Check
 												label="Neuropsicología"
@@ -345,7 +342,6 @@ function FormularioRegistro() {
 													name="especialidad"
 													value="Neuropsicología"
 													onChange={handleOnChange}
-													isInvalid={!!errors.especialidad}
 												/>
 												<Form.Check
 												label="Psicología clínica"
@@ -355,7 +351,6 @@ function FormularioRegistro() {
 													name="especialidad"
 													value="Psicología clínica"
 													onChange={handleOnChange}
-													isInvalid={!!errors.especialidad}
 												/>
 												<Form.Check
 												label="Psicología evolutiva"
@@ -365,7 +360,6 @@ function FormularioRegistro() {
 													name="especialidad"
 													value="Psicología evolutiva"
 													onChange={handleOnChange}
-													isInvalid={!!errors.especialidad}
 												/>
 												<Form.Control.Feedback type="invalid">
 											{errors.especialidad}

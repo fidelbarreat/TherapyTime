@@ -110,28 +110,15 @@ const FormularioModPerfil = () => {
 	};
 	
 	const handleUpload = async (e) => {
-		const uploadTask = st.ref().child(`profile_pics/${image.name}`);
-		await uploadTask.put(image);
-		const urlFile = await uploadTask.getDownloadURL();
-		setValues({ ...values, profile_pic: urlFile });
-		// uploadTask.on(
-		//   "state_changed",
-		//   error => {
-		// 	console.log(error);
-		//   },
-		//   () => {
-		// 	st
-		// 	  .ref("profile_pics")
-		// 	  .child(image.name)
-		// 	  .getDownloadURL()
-		// 	  .then(url => {
-		// 		setUrl(url);
-		// 		// setValues({ ...values, profile_pic: url });
-		// 		// docRef.update(values);
-		// 		alert("¡Imagen guardada exitosamente!");
-		// 	  });
-		//   }
-		// );
+		try{
+			const uploadTask = st.ref().child(`profile_pics/${image.name}`);
+			await uploadTask.put(image);
+			const urlFile = await uploadTask.getDownloadURL();
+			setValues({ ...values, profile_pic: urlFile });
+		} catch{
+			toast('Imagen inválida.')
+		}
+		
 	};
 
 	console.log(values.especialidad)
