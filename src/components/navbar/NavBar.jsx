@@ -68,6 +68,14 @@ function NavBar() {
 								</Nav.Link>
 							)}
 							
+							{!!user && !isAdmin && !isSpecialist &&(
+								<Nav.Link>
+									<Link to="/Feedback" className="link">
+										Retroalimentación
+									</Link>
+								</Nav.Link>
+							)}
+							
 							{!!user ? (
 								<div>
 									<Button variant="warning" onClick={handleLogout}>

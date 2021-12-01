@@ -7,7 +7,8 @@ import SearchSpecialist from './components/SearchSpecialist/SearchSpecialist';
 import PrivateRoute from '../src/components/ProtectedRoutes/PrivateRoute';
 import Reservar_Cita from './components/Reservar_Cita/Reservar_Cita';
 import Pagar from './components/Pagar/Pagar';
-import Historial from './components/Historial/Historial.jsx';
+import Historial from './components/Historial/Historial';
+import Feedback from './components/Feedback/Feedback';
 import AdminHome from './components/Admin/AdminHome';
 import AdminRequest from './components/Admin/AdminRequest';
 
@@ -25,6 +26,7 @@ function Routes() {
       <PrivateRoute exact path="/Reservar_Cita/:nombre/:email" component={Reservar_Cita}/>
       <PrivateRoute exact path="/Pagar" component={Pagar}/>
       <PrivateRoute exact path="/Historial" component={Historial}/>
+      <PrivateRoute exact path="/Feedback" component={Feedback}/>
       {/* <PrivateRoute exact path="/Pagar" component={Pagar}/> */}
 
       <Route exact path="/Admin" component={AdminHome} />
