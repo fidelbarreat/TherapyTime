@@ -92,7 +92,7 @@ function Reservar_Cita() {
 				console.log(error.message);
 			}
 		} else {
-			toast("¡Ups, tu especialista se encuentra ocupado.!");
+			toast("¡Ups, tu especialista se encuentra ocupado!");
 		}
 	};
 
@@ -133,7 +133,8 @@ function Reservar_Cita() {
 											maxDate={new Date("2022", "11", "24")}
 											showDisabledMonthNavigation
 											showTimeSelect
-											excludeTimes={[]}
+											minTime = {fecha_minima.setHours(8,0,0,0)}
+											maxTime = {fecha_minima.setHours(15,0,0,0)}
 											dateFormat="d/MM/yyyy h:mm aa"
 										/>
 										<br />
