@@ -39,11 +39,11 @@ function Pagar() {
 		file: "",
 		profile_pic: "",
 		especialidad: "",
-		rating: "",
+		rating: 0,
 		citas: [],
 		biografia: "",
 		uid: "",
-        cant_rating: "",
+        cant_rating: 0,
 	});
 
 	[info_specialist, setInfo_specialist] = useState({
@@ -56,11 +56,11 @@ function Pagar() {
 		file: "",
 		profile_pic: "",
 		especialidad: "",
-		rating: "",
+		rating: 0,
 		citas: [],
 		biografia: "",
 		uid: "",
-        cant_rating: "",
+        cant_rating: 0,
 	});
 
 	const handleCancel = async (e) => {

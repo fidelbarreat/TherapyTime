@@ -11,7 +11,7 @@ var [info_specialist, setInfo_specialist] = [{}, () => {}];
 const Feedback = () => {
 	const [consultas, setConsultas] = useState([]);
 	const { user, setUser } = useContext(UserContext);
-	let docSpecialist = db.collection("especialistas");
+	let docSpecialist = db.collection("especialistas").doc("fjHKSJPkoKVHtmLFP3w89kPDaA23");
 	const history = useHistory();
 
 	const [values, setValues] = useState({
@@ -20,7 +20,7 @@ const Feedback = () => {
 		uid_specialist: "",
 		name_specialist: "",
 		comentario: "",
-		rating: "",
+		rating: 0,
 	});
 
     [info_specialist, setInfo_specialist] = useState({
@@ -45,9 +45,8 @@ const Feedback = () => {
 		const q = usersRef.where(
 			"uid_pacient",
 			"==",
-			"5XasGr0ARIenPHtqP6wOqn0KZA03"//Cambiar
+			"fjHKSJPkoKVHtmLFP3w89kPDaA23"//Cambiar
 		);
-        docSpecialist = docSpecialist.doc("5XasGr0ARIenPHtqP6wOqn0KZA03");
 			docSpecialist.get().then((esp) => {
 				console.debug(esp.data());
 				setInfo_specialist(esp.data());
@@ -71,16 +70,20 @@ const Feedback = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+            
+		    setValues({ ...values, uid_specialist: info_specialist.uid, name_specialist: info_specialist.nombre });
 			db.collection("feedback")
 				.doc()
 				.set(values)
 				.catch((err) => {
 					console.log(err);
 				});
-                let r = info_specialist.rating * info_specialist.cant_rating + values.rating;
-                let cr = info_specialist.cant_rating += 1;
-                r = r / info_specialist.cant_rating;
-                setInfo_specialist({ ...info_specialist, rating: r, cant_rating: cr });
+                info_specialist.rating = (info_specialist.rating * info_specialist.cant_rating + values.rating) / info_specialist.cant_rating;
+                info_specialist.cant_rating += 1;
+                // setInfo_specialist({ ...info_specialist, cant_rating: cr });
+                // setInfo_specialist({ ...info_specialist, rating: r });
+                console.debug(info_specialist.rating);
+                console.debug(info_specialist);
                 docSpecialist.update(info_specialist);
 
 		} catch (error) {
