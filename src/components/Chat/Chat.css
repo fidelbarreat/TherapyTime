@@ -15,7 +15,6 @@
 .home_container {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 3fr;
     overflow: hidden;
     height: calc(100vh - 70px);
     width: 100vw;

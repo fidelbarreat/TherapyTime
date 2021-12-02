@@ -1,5 +1,35 @@
 .card {
     margin: 10px;
-    background: none;
+    padding: 0.5rem 1rem;
     border: none;
+   
+    
 }
+
+.cardbody{
+    background: rgba(202, 113, 198, 0.50);
+    border-radius: 7px;
+    padding: 0.5rem 1rem;
+    color:white;
+    font-weight: bold;
+}
+.cardtext{
+    text-align: justify;
+}
+.cardtitle{
+    text-align: center;
+    padding: 0.5rem 1rem;
+   
+}
+
+.cardbody:hover {
+    background: rgba(202, 113, 198, 0.20);
+    color: rgb(110, 53, 136);
+    transition: 250ms;
+    
+}
+
+
+.imagen{
+    border-radius: 10px;
+}   

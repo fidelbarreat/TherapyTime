@@ -24,7 +24,7 @@ function NavBar() {
 			<Navbar collapseOnSelect expand="lg" className="nav" sticky="top">
 				<Container>
 					{/* <Navbar.Brand><div className = "logo">TherapyTime</div></Navbar.Brand> */}
-					<Navbar.Brand>
+					<Navbar.Brand> 
 						<img className="imag-log" src={logo} alt="Logo" />
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />

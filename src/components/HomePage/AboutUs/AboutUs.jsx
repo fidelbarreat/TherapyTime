@@ -15,12 +15,7 @@ const AboutUs = () => {
 		<AboutUsContainer>
             <AboutUsInfo>
                 <img src={logo} alt =""/>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Maecenas ultricies, purus eu consectetur molestie, orci neque faucibus nisi, 
-                nec porta turpis neque et ex. Praesent malesuada elementum ex, ut scelerisque
-                leo tincidunt quis. Nullam vestibulum nunc ac finibus cursus. Fusce id lorem 
-                quis quam consectetur fringilla. Nunc interdum dictum nunc. Nulla auctor venenatis 
-                ex, sit amet consequat lectus faucibus nec.</p>
+                <p>TherapyTime, somos una plataforma que cuenta con un equipo de psicólogos certificados listos para brindar el servicio de terapia psicológica online a través de chat y videollamada, como también brindamos las herramientas para que nuestros especialistas tengan una eficaz gestión de citas. De esta manera, logramos tener un alcance a cualquier parte del mundo. Nuestro objetivo es brindar un servicio de calidad, seguro para todos los pacientes.</p>
             </AboutUsInfo>
 
             <StepsInfo>

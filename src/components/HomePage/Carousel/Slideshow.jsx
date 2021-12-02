@@ -1,8 +1,12 @@
 import React, {useRef, useEffect, useCallback} from 'react';
-import img1 from '../../../images/first-slideshow-1.jpg';
-import img2 from '../../../images/first-slideshow-2.jpg';
+import img1 from '../../../images/first-slideshow-2.jpg';
+import img2 from '../../../images/consulta22.jpeg';
 import img3 from '../../../images/first-slideshow-3.jpg';
-import img4 from '../../../images/first-slideshow-4.jpg';
+import img4 from '../../../images/consulta32.jpeg';
+import img5 from '../../../images/first-slideshow-1.jpg';
+
+
+
 import {ReactComponent as LeftArrow} from '../../../images/left-arrow.svg';
 import {ReactComponent as RightArrow} from '../../../images/right-arrow.svg';
 import styled from 'styled-components';
@@ -103,6 +107,15 @@ const Slideshow = ({
 							<p>a terapia va quien quiere solucionarlos</p>
 						</TextSlide>
 					</Slide>
+					<Slide>
+						<img src={img5} alt=""/>
+						<TextSlide>
+							<p>No debemos tener miedo a equivocarnos.</p>
+							<p>Hasta los planetas chocan, y del caos nacen las estrellas (Charles Chaplin)</p>
+						</TextSlide>
+					</Slide>
+
+
 			</ContenedorSlideshow>
 			{controles && <Controls>
 				<Boton onClick={before}>

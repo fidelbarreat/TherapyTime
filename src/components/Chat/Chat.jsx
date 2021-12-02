@@ -3,6 +3,8 @@ import { db, auth, st } from "../../utils/firebase-config";
 import User from "./User";
 import './Chat.css';
 import { UserContext } from "../UserContext";
+import image from "../../images/register.png";
+import { Form, Button, Container, Card, Col, Row } from "react-bootstrap";
 
 function Chat() {
 	
@@ -49,8 +51,10 @@ function Chat() {
     };
 
 	return (
-		<div className="home_container">
-            <div className="users_container">
+    <Container className="text-center justify-content mt-5">
+      <Row>
+        <h1>Chats</h1>
+        <Col xs={6}>
                 {users.map(usuario => (
                 <User
                   key={usuario.uid}
@@ -58,8 +62,13 @@ function Chat() {
                   selectUser={selectUser}
                 />
                 ))}
-            </div>
-        </div>
+                </Col>
+                
+        <Col xs={6}>
+          <img className="myim"src={image} alt="" width="100%"/>
+        </Col>
+                </Row>
+                </Container>
 	);
 };
 

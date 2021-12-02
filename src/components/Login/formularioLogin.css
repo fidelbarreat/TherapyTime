@@ -1,7 +1,31 @@
 .login-container{
     margin-top: 80px;
+   
+
 }
 
 .submitLogin {
     padding: 2% 30%;
+   
+}
+.botones{
+    
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+   
+    grid-template-columns: 2fr 1fr;
+    padding: 2% 30%;
+    font-weight: bold;
+    
+    
+}
+.cardtitle{
+    font-weight: bold;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.cardback{
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.30));
+    background: rgb(150, 148, 242,0.25);
+    border-radius: 0.5rem;
 }

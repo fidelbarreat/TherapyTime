@@ -11,6 +11,7 @@ import { getFirstElementArrayCollection } from "../../Parsers";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import image from "../../images/register.png";
+import "./Reservar_Cita.css";
 
 function Reservar_Cita() {
 	const h = useHistory();
@@ -111,11 +112,11 @@ function Reservar_Cita() {
 
 	return (
 		<Container className="text-center justify-content">
-			<Row>
+			<Row >
 				<Col sm={6}>
 					<Card className="card">
-						<Card.Body>
-							<Card.Title>Reservar Cita</Card.Title>
+						<Card.Body className="cardcita">
+							<Card.Title >Reservar Cita</Card.Title>
 							{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
 							<Card.Text>
 								<p>

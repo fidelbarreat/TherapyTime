@@ -1,4 +1,9 @@
 .specialist-card {
     border: 1px solid #686868;
     margin: 1rem;
+    text-align: justify;
 }
+.misespecialistas{
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+

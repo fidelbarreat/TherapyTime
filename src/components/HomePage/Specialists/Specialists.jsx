@@ -14,42 +14,43 @@ function Specialists() {
 		{
 			name: "Trixie Tang",
 			description:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+				"Mi meta es poder ayudarte a solucionar todo aquello que te perturbe, brindándote las herramientas adecuadas para lograrlo. Juntos podremos construir las soluciones, me enfoco en el motivo de consulta y podré ayudarte a través de mi experiencia profesional.",
 			rating: 5.0,
 			img: girl1
+			
 		},
 		{
 			name: "Carol Federman",
 			description:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+				"Con mi experiencia profesional te podré ayudar a recuperar la estabilidad y tranquilidad que te ha quitado el motivo de la cita. Busco poder construir un espacio contigo en el que te sientas cómodo y en confianza en todo momento.",
 			rating: 4.0,
 			img: girl2
 		},
 		{
 			name: "John Fitzer",
 			description:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+				"Como profesional de la salud, mi propuesta es ofrecerte un espacio libre de juicios y seguro. Intento descubrir tu verdadero ser, para así poder ayudarte a entender un poco más los procesos que atraviesas y la forma en la que los puedes resolver. ",
 			rating: 4.5,
 			img: boy1
 		}],[
 		{
 			name: "Catrina Wilson",
 			description:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+				"Para mí es importante canalizar todos los sentimientos y emociones que puedas tener, es necesario que puedas expresarlo, es por esto, que con mi ayuda podremos trabajar para que te encuentres contigo mismo, para que manejes efectivamente tus relaciones personales encontrando estabilidad y tranquilidad.",
 			rating: 5.0,
 			img: girl3
 		},
 		{
 			name: "Andrea Fitzer",
 			description:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+				" En mis consultas me gusta promover un espacio libre para hablar de cualquier tema que se te ocurra, conmigo podrás encontrar tú mismo las herramientas para salir de cualquier dolor, problema o situación que esté ocurriendo en tu vida. Mi gran experiencia me permite realizar estrategias para que puedas beneficiarte en cada aspecto de tu vida y que puedas tomar mejores decisiones. ",
 			rating: 4.0,
 			img: girl4
 		},
 		{
 			name: "Miriam Rodríguez",
 			description:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+				"Mi objetivo principal es ayudarte a modificar tus pensamientos, a que tengas comportamientos y sentimientos positivos. Te enseñaré técnicas de mindfulness y te brindaré las herramientas para que puedas solucionar cualquier problema de forma efectiva. ",
 			rating: 4.5,
 			img: girl5
 		},
@@ -58,7 +59,7 @@ function Specialists() {
 	return (
 		<Container>
 			<Row>
-				<h2>Especialistas más destacados</h2>
+				<h2 className="misespecialistas">Especialistas más destacados</h2>
 			</Row>
 			<Row>
 				<Carousel>

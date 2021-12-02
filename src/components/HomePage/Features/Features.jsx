@@ -1,24 +1,24 @@
 import React from 'react';
 import { Container, Row, Card} from 'react-bootstrap';
 import logo from '../../../images/logo-therapytime.png';
-import privacidad from '../../../images/privacidad.png';
-import seguridad from '../../../images/seguridad.png';
-import soporte from '../../../images/soporte.png';
+import privacidad from '../../../images/confidencial2.jpg';
+import seguridad from '../../../images/privado3.jpg';
+import soporte from '../../../images/soporte2.jpg';
 import "./features.css";
 
 function Features() {
 
     const features = [{
         name: "Privacidad",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+        description: "Toda la información que es brindada en el espacio terapéutico entra en un pacto de confidencialidad con los especialistas, esto implica que dicha información no puede ser difundida en público o a terceros sin la autorización del usuario. Resulta uno de los elementos más importantes que se implementa en nuestras consultas. ",
         url: privacidad
     },{
         name: "Seguridad",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+        description: "Garantizamos la seguridad de los datos de nuestros usuarios, es fundamental para nosotros brindar un marco de seguridad y confianza. De la misma forma, el establecer un contacto humano reconfortante y disponible. Queremos proporcionar a los usuarios la mejor atención posible.",
         url: seguridad
     },{
-        name: "Soporte 24/7",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec justo velit, facilisis in nibh non, tincidunt tristique velit. Cras non tellus nisl. Vestibulum elementum id nunc quis ullamcorper",
+        name: "Soporte",
+        description: "Ofrecemos servicio de soporte las 24 horas al día, los 7 días a la semana para todos nuestros usuarios. En cualquier momento que necesite solucionar un problema o realizar una pregunta estaremos disponibles para brindarle ayuda. Garantizamos una atención al cliente sin demoras, eficaz y de calidad. ",
         url: soporte
     }]
 
@@ -28,14 +28,14 @@ function Features() {
             {features.map(feature => {
                 return (
                 <Card className="card" style={{ width: '18rem', margin: '10px' }}>
-                <Card.Body>
-                    <img src={feature.url} width="100%"/>
-                  <Card.Title>{feature.name}</Card.Title>
+                <Card.Body className ="cardbody">
+                    <img className="imagen" src={feature.url} width="100%"/>
+                  <Card.Title className ="cardtitle">{feature.name}</Card.Title>
                   {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
-                  <Card.Text>
+                  <Card.Text className ="cardtext">
                     {feature.description}
                   </Card.Text>
-                </Card.Body>
+                </Card.Body >
               </Card>
                 )
             })}

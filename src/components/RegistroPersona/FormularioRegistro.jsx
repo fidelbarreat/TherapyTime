@@ -185,8 +185,8 @@ function FormularioRegistro() {
 			<Row>
 				<Col sm={6}>
 					<Card className="card">
-						<Card.Body>
-							<Card.Title>Registro</Card.Title>
+						<Card.Body className="cardbodyre" >
+							<Card.Title className="registrotitle">Registro</Card.Title>
 							{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
 							<Card.Text>
 								<Form className="form" onSubmit={handleSubmit}>
@@ -390,7 +390,7 @@ function FormularioRegistro() {
 					</Card>
 				</Col>
 				<Col sm={6}>
-					<img src={image} alt="" width="100%" />
+					<img className="myim"src={image} alt="" width="100%"/>
 				</Col>
 			</Row>
 		</Container>

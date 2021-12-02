@@ -116,11 +116,12 @@ const FormularioModPerfil = () => {
 
 	return (
 		<ProfileContainer>
-			<Container>
+			<Container className="text-center justify-content mt-5">
 				<Row>
+					<h1>Chats</h1>
 					<Col sm={6}>
 						<Card className="card">
-							<Card.Body>
+							<Card.Body className="cardperfil">
 								<Card.Title>Perfil de Usuario</Card.Title>
 								<Card.Text>
 									<Form className="form" onSubmit={handleSubmit}>

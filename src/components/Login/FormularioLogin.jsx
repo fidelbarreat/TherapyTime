@@ -88,8 +88,8 @@ function FormularioLogin() {
 					</Col>
 					<Col sm={6}>
 						<Card className="card">
-							<Card.Body>
-								<Card.Title>Inicio de Sesión</Card.Title>
+							<Card.Body className="cardback">
+								<Card.Title className="cardtitle">Inicio de Sesión</Card.Title>
 								{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
 								<Card.Text>
 									<Form className="form" onSubmit={handleSubmit}>
@@ -122,7 +122,7 @@ function FormularioLogin() {
 												Nunca compartas tu contraseña con nadie.
 											</Form.Text>
 										</Form.Group>
-
+										<div className="botones">
 										<Button
 											className="submitLogin"
 											variant="primary"
@@ -141,6 +141,7 @@ function FormularioLogin() {
 										>
 											Ingresar con Google
 										</Button>
+										</div>
 									</Form>
 								</Card.Text>
 							</Card.Body>

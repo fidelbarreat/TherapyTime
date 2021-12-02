@@ -157,7 +157,7 @@ const SearchSpecialist = () => {
                     let especialidad = specialist.especialidad;
                     return(
                         
-                        <Col xs= {6}>
+                        <Col xs= {12} md={6}>
                         <Card className="text-center" border={'dark'}>
                             <Card.Body>
                                 <Card.Title>{name}</Card.Title>

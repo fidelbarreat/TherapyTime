@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Perfil.css";
 import { auth } from "../../utils/firebase-config";
 import { useHistory } from "react-router-dom";
 
