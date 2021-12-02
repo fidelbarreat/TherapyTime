@@ -154,13 +154,13 @@ function Pagar() {
 									>
 										Cancelar cita
 									</Button>
-									<Button
+									{/* <Button
 										className="cancelarCita"
 										type="submit"
 										onClick={handleSubmit}
 									>
 										Pagar
-									</Button>
+									</Button> */}
 								</Card.Text>
 							</Card.Body>
 						</Card>
