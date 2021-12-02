@@ -1,6 +1,5 @@
 {
 	"name": "TherapyTime",
-	"short_name": "TT",
 	"version": "1.1.4",
 	"start_url": "/",
 	"display": "standalone",

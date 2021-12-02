@@ -21,10 +21,11 @@ function FormularioRegistro() {
 		file: "",
 		profile_pic: "",
 		especialidad: "",
-		rating: "0",
+		rating: 0,
 		citas: [],
 		biografia: "",
 		isOnline: true,
+		cant_rating: 0
 	});
 	const [form, setForm] = useState({});
 	const [errors, setErrors] = useState({});
@@ -58,6 +59,7 @@ function FormularioRegistro() {
 		file,
 		especialidad,
 		rating,
+		cant_rating,
 		citas,
 		biografia,
 		isOnline,
@@ -126,6 +128,7 @@ function FormularioRegistro() {
 								file,
 								especialidad,
 								rating,
+								cant_rating,
 								citas,
 								biografia,
 								isOnline,
@@ -155,6 +158,7 @@ function FormularioRegistro() {
 								file,
 								especialidad,
 								rating,
+								cant_rating,
 								citas,
 								biografia,
 								isOnline,

@@ -44,7 +44,8 @@ function Reservar_Cita() {
 		tipo_de_usuario: "",
 		file: "",
 		especialidad: "",
-		rating: "",
+		rating: 0,
+		cant_rating: 0,
 		citas: [],
 		biografia: "",
 		uid: ""
@@ -81,6 +82,7 @@ function Reservar_Cita() {
 			}
 		}
 		if (!cita_repetida) {
+			console.debug(info_pacient);
 			const temporal_p = info_pacient.citas;
 			temporal_p.push(values);
 			setInfo_pacient({ ...info_pacient, citas: temporal_p });
@@ -93,7 +95,7 @@ function Reservar_Cita() {
 				console.log(error.message);
 			}
 		} else {
-			toast("¡Ups, tu especialista se encuentra ocupado.!");
+			toast("¡Ups, tu especialista se encuentra ocupado!");
 		}
 	};
 
@@ -134,7 +136,8 @@ function Reservar_Cita() {
 											maxDate={new Date("2022", "11", "24")}
 											showDisabledMonthNavigation
 											showTimeSelect
-											excludeTimes={[]}
+											minTime = {fecha_minima.setHours(8,0,0,0)}
+											maxTime = {fecha_minima.setHours(15,0,0,0)}
 											dateFormat="d/MM/yyyy h:mm aa"
 										/>
 										<br />

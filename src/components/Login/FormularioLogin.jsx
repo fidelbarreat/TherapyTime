@@ -43,10 +43,11 @@ function FormularioLogin() {
 						tipo_de_usuario: "Paciente",
 						file: "",
 						especialidad: "",
-						rating: "",
+						rating: 0,
 						citas: [],
 						biografia: "",
 						uid: auth.currentUser.uid,
+						cant_rating: 0
 					};
 
 					docRef.set(newGoogleLogin).catch((err) => {

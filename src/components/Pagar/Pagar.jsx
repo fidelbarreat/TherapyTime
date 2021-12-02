@@ -42,7 +42,8 @@ function Pagar() {
 		rating: "",
 		citas: [],
 		biografia: "",
-		uid: ""
+		uid: "",
+        cant_rating: "",
 	});
 
 	[info_specialist, setInfo_specialist] = useState({
@@ -58,7 +59,8 @@ function Pagar() {
 		rating: "",
 		citas: [],
 		biografia: "",
-		uid: ""
+		uid: "",
+        cant_rating: "",
 	});
 
 	const handleCancel = async (e) => {
@@ -90,14 +92,6 @@ function Pagar() {
 			});
 		});
 	}, []);
-
-	// const getEspecialista = async (uid) => {
-	// 	docSpecialist.get().then((doc) => {
-	// 		console.debug(doc.data());
-	// 		setInfo_specialist(doc.data());
-	// 		return Promise.resolve(1);
-	// 	});
-	// }
 
 	const handleSubmit = async (e) => {
 		//e.preventDefault();
