@@ -44,6 +44,14 @@ function NavBar() {
 								</Nav.Link>
 							)}
 
+							{	isSpecialist && (
+								<Nav.Link>
+									<Link to="/Expedientes" className="link">
+										Expedientes
+									</Link>
+								</Nav.Link>
+							)}
+
 							{!!user && !isAdmin && (
 								<Nav.Link>
 									<Link to="/Perfil" className="link">

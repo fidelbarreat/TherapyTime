@@ -64,6 +64,7 @@ function Reservar_Cita() {
 		price: "20$",
 		dateTime: "",
 		comentario: "",
+		expediente: ""
 	});
 
 	const handleOnChange = (event) => {
