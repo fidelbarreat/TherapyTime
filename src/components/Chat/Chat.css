@@ -72,3 +72,48 @@
   color: var(--color-4);
   text-align: center;
 }
+
+.msg-form {
+  width: 100%;
+}
+
+.msg-form > button {
+  width:10%;
+  height: 2.5rem;
+
+  background-color: #0084ff; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
+
+.msg-form > input{
+  height: 2.5rem;
+  width: 90%;
+}
+
+.msg-text{
+  padding: 0;
+  margin: 0;
+}
+
+.msg-hora{
+  font-size: 0.75rem;
+  padding: 0;
+  margin: 0;
+}
+
+.msg-nombre{
+  padding: 0;
+  margin: 0;
+}
+
+.msg{
+  list-style: none;
+  width: 100%;
+
+}

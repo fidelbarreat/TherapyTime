@@ -24,6 +24,7 @@ const Message = ({
 
   return (
     <div className="px-4 py-4 rounded-md hover:bg-gray-50 dark:hover:bg-coolDark-600 overflow-hidden flex items-start">
+      
       {photoURL ? (
         <img
           src={photoURL}
@@ -33,18 +34,23 @@ const Message = ({
           height={45}
         />
       ) : null}
+      
       <div>
+
         <div className="flex items-center mb-1">
           {nombre ? (
-            <p className="mr-2 text-primary-500"><b>{nombre}</b></p>
+            <p className="mr-2 text-primary-500 msg-nombre"><b>{nombre}</b></p>
           ) : null}
+          <p className="msg-text">{text}</p>
           {createdAt?.seconds ? (
-            <span className="text-gray-500 text-xs">
+            <span className="text-gray-500 text-xs msg-hora">
               {formatDate(new Date(createdAt.seconds * 1000))}
             </span>
           ) : null}
         </div>
-        <p>{text}</p>
+
+        
+      
       </div>
     </div>
   );
