@@ -84,6 +84,14 @@ function NavBar() {
 								</Nav.Link>
 							)}
 
+							{!!user && !isAdmin && (
+								<Nav.Link>
+									<Link to="/Chat" className="link">
+										Chat
+									</Link>
+								</Nav.Link>
+							)}
+
 							{!!user && !isAdmin &&(
 								<Nav.Link>
 									<Link to="/Retroalimentaciones" className="link">

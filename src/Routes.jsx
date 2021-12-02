@@ -11,6 +11,8 @@ import Historial from './components/Historial/Historial';
 import Feedback from './components/Feedback/Feedback';
 import Retroalimentaciones from './components/Feedback/Retroalimentaciones';
 import Expedientes from './components/Expedientes/Expedientes';
+import Chat_vivo from './components/Chat/Chat_vivo';  
+import Chat from './components/Chat/Chat';  
 import AdminHome from './components/Admin/AdminHome';
 import AdminRequest from './components/Admin/AdminRequest';
 
@@ -31,6 +33,8 @@ function Routes() {
       <PrivateRoute exact path="/Feedback" component={Feedback}/>
       <PrivateRoute exact path="/Retroalimentaciones" component={Retroalimentaciones}/>
       <PrivateRoute exact path="/Expedientes" component={Expedientes}/>
+      <PrivateRoute exact path="/Chat" component={Chat}/>
+      <PrivateRoute exact path="/Chat_vivo/:id" component={Chat_vivo}/>
       {/* <PrivateRoute exact path="/Pagar" component={Pagar}/> */}
 
       <Route exact path="/Admin" component={AdminHome} />
