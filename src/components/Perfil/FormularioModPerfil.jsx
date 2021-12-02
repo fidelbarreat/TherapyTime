@@ -33,21 +33,28 @@ const FormularioModPerfil = () => {
 	});
 
 	useEffect(() => {
-		if(user.tipo_de_usuario === "Especialista"){
+		console.debug("entro useEffect")
+		console.debug(user)
+		console.debug(user.tipo_de_usuario);
+		if(user.tipo_de_usuario == "Especialista"){
+			console.debug("1")
 			if(user.file === "" || user.especialidad === ""){
+				console.debug("2")
 				const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
 				docRef.get().then((doc) => {
 				setValues(doc.data());
 				console.debug(values);
 			});
 			} else {
+				console.debug("3")
 				const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
 				docRef.get().then((doc) => {
 				setValues(doc.data());
 				console.debug(values);
 			});
 			}
-		}	else if(user.tipo_de_usuario === "Paciente"){
+		}	else if(user.tipo_de_usuario == "Paciente"){
+			console.debug("4")
 				const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
 				docRef.get().then((doc) => {
 				setValues(doc.data());
@@ -55,6 +62,7 @@ const FormularioModPerfil = () => {
 			});
 
 		}	else	{
+			console.debug("5")
 				const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
 				docRef.get().then((doc) => {
 				setValues(doc.data());
@@ -134,7 +142,6 @@ const FormularioModPerfil = () => {
 		// );
 	};
 
-	console.log(values.especialidad)
 	return (
 		<ProfileContainer>
 			<Container>
