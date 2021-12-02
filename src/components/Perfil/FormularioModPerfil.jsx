@@ -33,41 +33,29 @@ const FormularioModPerfil = () => {
 	});
 
 	useEffect(() => {
-		console.debug("entro useEffect")
-		console.debug(user)
-		console.debug(user.tipo_de_usuario);
-		if(user.tipo_de_usuario == "Especialista"){
-			console.debug("1")
-			if(user.file === "" || user.especialidad === ""){
-				console.debug("2")
-				const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
-				docRef.get().then((doc) => {
-				setValues(doc.data());
-				console.debug(values);
-			});
-			} else {
-				console.debug("3")
+		if(user.tipo_de_usuario === "Especialista"){
+			const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
+
+			if(docRef.uid === undefined){
 				const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
 				docRef.get().then((doc) => {
 				setValues(doc.data());
 				console.debug(values);
 			});
+			} else{
+				docRef.get().then((doc) => {
+					setValues(doc.data());
+					console.debug(values);
+				});
 			}
-		}	else if(user.tipo_de_usuario == "Paciente"){
-			console.debug("4")
+					
+		}	else if(user.tipo_de_usuario === "Paciente"){
 				const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
 				docRef.get().then((doc) => {
 				setValues(doc.data());
 				console.debug(values);
 			});
 
-		}	else	{
-			console.debug("5")
-				const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
-				docRef.get().then((doc) => {
-				setValues(doc.data());
-				console.debug(values);
-			});
 		}	
 
 	}, []);
@@ -87,27 +75,23 @@ const FormularioModPerfil = () => {
 		e.preventDefault();
 
 		if(user.tipo_de_usuario === "Especialista"){
-			if(user.file === "" || user.especialidad === ""){
 				try {
 					const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
-					docRef.update(values);
-					toast("¡Tus datos se han guardado exitosamente!");
+					if(docRef.uid === undefined){
+						const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
+						docRef.update(values);
+						toast("¡Tus datos se han guardado exitosamente!");
+					}	else{
+						docRef.update(values);
+						toast("¡Tus datos se han guardado exitosamente!");
+					}
 				} catch (error) {
 					console.log(error.message);
 				}
-			}	else{
-				try {
-					const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
-					docRef.update(values);
-					toast("¡Tus datos se han guardado exitosamente!");
-				} catch (error) {
-					console.log(error.message);
-				}
-			}		
-
+					
 		}	else if(user.tipo_de_usuario === "Paciente"){
 			try {
-				const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
+				const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
 				docRef.update(values);
 				toast("¡Tus datos se han guardado exitosamente!");
 			} catch (error) {
@@ -118,28 +102,15 @@ const FormularioModPerfil = () => {
 	};
 	
 	const handleUpload = async (e) => {
-		const uploadTask = st.ref().child(`profile_pics/${image.name}`);
-		await uploadTask.put(image);
-		const urlFile = await uploadTask.getDownloadURL();
-		setValues({ ...values, profile_pic: urlFile });
-		// uploadTask.on(
-		//   "state_changed",
-		//   error => {
-		// 	console.log(error);
-		//   },
-		//   () => {
-		// 	st
-		// 	  .ref("profile_pics")
-		// 	  .child(image.name)
-		// 	  .getDownloadURL()
-		// 	  .then(url => {
-		// 		setUrl(url);
-		// 		// setValues({ ...values, profile_pic: url });
-		// 		// docRef.update(values);
-		// 		alert("¡Imagen guardada exitosamente!");
-		// 	  });
-		//   }
-		// );
+		try{
+			const uploadTask = st.ref().child(`profile_pics/${image.name}`);
+			await uploadTask.put(image);
+			const urlFile = await uploadTask.getDownloadURL();
+			setValues({ ...values, profile_pic: urlFile });
+		} catch{
+			toast('Imagen inválida.')
+		}
+		
 	};
 
 	return (
