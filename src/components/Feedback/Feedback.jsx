@@ -92,10 +92,6 @@ const Feedback = () => {
 					info_specialist.cant_rating += 1;
                 	docSpecialist.update(info_specialist);
 				}
-                
-				console.log(info_specialist)
-				console.log(info_specialist.rating)
-				console.log(info_specialist.cant_rating)
 
 				toast("¡Comentario publicado!");
 				history.push("/");
@@ -108,7 +104,7 @@ const Feedback = () => {
 
 	};
 	return (
-		<Container className="text-center justify-content">
+		<Container className="text-center justify-content mt-5">
 			<Row>
 				<Form className="form">
 					<Form.Group className="mb-3">

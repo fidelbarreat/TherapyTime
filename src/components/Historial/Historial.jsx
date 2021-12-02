@@ -89,7 +89,8 @@ function Historial() {
     }
 
     return (
-    <div>
+    <div className = "text-center">
+        <h1>Historial de consultas</h1>
         <DataTable
         columns = {columna_pacient}
         data = {consultas}

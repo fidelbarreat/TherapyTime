@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import { useFirestoreQuery } from './hooks';
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Card, Col, Container, Row } from "react-bootstrap";
 // Components
 import Message from './Message';
 
@@ -52,7 +53,15 @@ const Channel = ({ user = null }) => {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <>
+    <Container className = "justify-content-center">
+      <Row>
+					<Card className="card">
+						<Card.Body>
+							<Card.Title>Chat</Card.Title>
+							{/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
+							<Card.Text>
+              <div className="flex flex-col h-full">
       <div className="overflow-auto h-full">
         <div className="py-4 max-w-screen-lg mx-auto">
           <div className="border-b dark:border-gray-600 border-gray-200 py-8 mb-4">
@@ -97,6 +106,15 @@ const Channel = ({ user = null }) => {
         </form>
       </div>
     </div>
+							</Card.Text>
+						</Card.Body>
+					</Card>
+      </Row>
+    
+                
+    </Container>
+    
+    </>
   );
 };
 
