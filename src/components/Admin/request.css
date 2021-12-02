@@ -1,0 +1,41 @@
+.request-container{
+    max-width: 80%;
+    margin: 5rem auto;
+    border: 1px solid rgba(217, 78, 235, 0.45);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.request{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.request-btns{
+    display: flex;
+    justify-content: end;
+}
+
+.request-btns>button{
+    padding: 30px;
+    margin: 0 15px;
+    box-shadow: none;
+    border-radius: 50%;
+    border-style: solid;
+    background-color: white;
+}
+
+.request-btns>button:hover{
+
+    background-color: rgba(217, 78, 235, 0.45);
+    border: none;
+    
+}
+
+@media (max-width: 600px) {
+    .request-btns>button{
+        padding: 5px;
+    }
+  }
