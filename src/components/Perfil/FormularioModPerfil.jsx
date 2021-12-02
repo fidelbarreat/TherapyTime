@@ -36,19 +36,19 @@ const FormularioModPerfil = () => {
 	useEffect(() => {
 		if(user.tipo_de_usuario === "Especialista"){
 			const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
-
-			if(docRef.uid === undefined){
-				const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
-				docRef.get().then((doc) => {
-				setValues(doc.data());
-				console.debug(values);
+			docRef.get().then((doc) => {
+				if(doc.data() === undefined){
+					const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
+					docRef.get().then((doc) => {
+						setValues(doc.data());
+					});
+				}	else{
+					docRef.get().then((doc) => {
+						setValues(doc.data());
+						console.debug(values);
+					});
+				}
 			});
-			} else{
-				docRef.get().then((doc) => {
-					setValues(doc.data());
-					console.debug(values);
-				});
-			}
 					
 		}	else if(user.tipo_de_usuario === "Paciente"){
 				const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
@@ -76,20 +76,17 @@ const FormularioModPerfil = () => {
 		e.preventDefault();
 
 		if(user.tipo_de_usuario === "Especialista"){
-				try {
 					const docRef = db.collection("especialistas_pendientes").doc(auth.currentUser.uid);
-					if(docRef.uid === undefined){
-						const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
-						docRef.update(values);
-						toast("¡Tus datos se han guardado exitosamente!");
-					}	else{
-						docRef.update(values);
-						toast("¡Tus datos se han guardado exitosamente!");
-					}
-				} catch (error) {
-					console.log(error.message);
-				}
-					
+					docRef.get().then((doc) => {
+						if(doc.data() === undefined){
+							const docRef = db.collection("especialistas").doc(auth.currentUser.uid);
+							docRef.update(values);
+							toast("¡Tus datos se han guardado exitosamente!");
+						}	else{
+							docRef.update(values);
+							toast("¡Tus datos se han guardado exitosamente!");
+						}
+					});				
 		}	else if(user.tipo_de_usuario === "Paciente"){
 			try {
 				const docRef = db.collection("pacientes").doc(auth.currentUser.uid);
