@@ -57,7 +57,7 @@ const Channel = ({ user = null }) => {
         <div className="py-4 max-w-screen-lg mx-auto">
           <div className="border-b dark:border-gray-600 border-gray-200 py-8 mb-4">
             <div className="font-bold text-3xl text-center">
-            <Link to={`/Chat_vivo/${id}`}><p className="mb-1">No olvides dejar tu feedback</p></Link> 
+            <Link to={`/Feedback/${id}`}><p className="mb-1">No olvides dejar tu feedback</p></Link> 
             </div>
           </div>
           <ul>

@@ -30,7 +30,7 @@ function Routes() {
       <PrivateRoute exact path="/Reservar_Cita/:nombre/:email" component={Reservar_Cita}/>
       <PrivateRoute exact path="/Pagar" component={Pagar}/>
       <PrivateRoute exact path="/Historial" component={Historial}/>
-      <PrivateRoute exact path="/Feedback" component={Feedback}/>
+      <PrivateRoute exact path="/Feedback/:id" component={Feedback}/>
       <PrivateRoute exact path="/Retroalimentaciones" component={Retroalimentaciones}/>
       <PrivateRoute exact path="/Expedientes" component={Expedientes}/>
       <PrivateRoute exact path="/Chat" component={Chat}/>

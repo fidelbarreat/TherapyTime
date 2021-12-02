@@ -75,14 +75,6 @@ function NavBar() {
 									</Link>
 								</Nav.Link>
 							)}
-							
-							{!!user && !isAdmin && !isSpecialist &&(
-								<Nav.Link>
-									<Link to="/Feedback" className="link">
-										Retroalimentación
-									</Link>
-								</Nav.Link>
-							)}
 
 							{!!user && !isAdmin && (
 								<Nav.Link>

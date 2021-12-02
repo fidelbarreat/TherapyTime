@@ -6,12 +6,14 @@ import { UserContext } from "../UserContext";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useParams } from "react-router-dom";
 
 var [info_specialist, setInfo_specialist] = [{}, () => {}];
 const Feedback = () => {
 	const [consultas, setConsultas] = useState([]);
 	const { user, setUser } = useContext(UserContext);
-	let docSpecialist = db.collection("especialistas").doc("fjHKSJPkoKVHtmLFP3w89kPDaA23");//Cambiar
+	let { id } = useParams();
+	let docSpecialist = db.collection("especialistas").doc(atob(id));
 	const history = useHistory();
 
 	const [values, setValues] = useState({
@@ -45,7 +47,7 @@ const Feedback = () => {
 		const q = usersRef.where(
 			"uid_pacient",
 			"==",
-			"fjHKSJPkoKVHtmLFP3w89kPDaA23"//Cambiar
+			atob(id)
 		);
 			docSpecialist.get().then((esp) => {
 				console.debug(esp.data());
@@ -63,14 +65,16 @@ const Feedback = () => {
 
 	const handleOnChange = (event) => {
 		const { value, name: inputName } = event.target;
-		console.log({ inputName, value });
 		setValues({ ...values, [inputName]: value });
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-            values.uid_specialist = info_specialist.uid;
+			if(values.rating > 5 || values.rating < 0){
+				toast("¡Rating inválido!");
+			} else{
+				values.uid_specialist = info_specialist.uid;
             values.name_specialist = info_specialist.nombre;
 			db.collection("feedback")
 				.doc()
@@ -78,16 +82,30 @@ const Feedback = () => {
 				.catch((err) => {
 					console.log(err);
 				});
-                info_specialist.rating = (info_specialist.rating * info_specialist.cant_rating + values.rating) / info_specialist.cant_rating;
-                info_specialist.cant_rating += 1;
-                docSpecialist.update(info_specialist);
+				if(info_specialist.cant_rating > 0){
+					info_specialist.rating = +((info_specialist.rating * info_specialist.cant_rating + +values.rating));
+                	info_specialist.cant_rating += 1;
+					info_specialist.rating = info_specialist.rating / info_specialist.cant_rating
+                	docSpecialist.update(info_specialist);	
+				}	else{	
+					info_specialist.rating = values.rating;
+					info_specialist.cant_rating += 1;
+                	docSpecialist.update(info_specialist);
+				}
+                
+				console.log(info_specialist)
+				console.log(info_specialist.rating)
+				console.log(info_specialist.cant_rating)
 
+				toast("¡Comentario publicado!");
+				history.push("/");
+			}
+            
 		} catch (error) {
 			console.log(error.message);
+			toast("¡Comentario inválido!");
 		}
 
-		toast("¡Comentario publicado!");
-		history.push("/");
 	};
 	return (
 		<Container className="text-center justify-content">
