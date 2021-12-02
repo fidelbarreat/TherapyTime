@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import { useFirestoreQuery } from './hooks';
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row, Button } from "react-bootstrap";
 // Components
 import Message from './Message';
 
@@ -67,6 +67,7 @@ const Channel = ({ user = null }) => {
           <div className="border-b dark:border-gray-600 border-gray-200 py-8 mb-4">
             <div className="font-bold text-3xl text-center">
             <Link to={`/Feedback/${id}`}><p className="mb-1">No olvides dejar tu feedback</p></Link> 
+            <a href="https://meet.google.com/new" target="_blank"><Button>Videollamada</Button></a>
             </div>
           </div>
           <ul>
