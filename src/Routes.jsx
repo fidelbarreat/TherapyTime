@@ -10,6 +10,7 @@ import Pagar from './components/Pagar/Pagar';
 import AdminHome from './components/Admin/AdminHome';
 import AdminRequest from './components/Admin/AdminRequest';
 import Chat from './components/Chat/Chat';
+import Chat_vivo from './components/Chat/Chat_vivo';
 
 
 function Routes() {
@@ -24,6 +25,7 @@ function Routes() {
       <PrivateRoute exact path="/Reservar_Cita/:nombre/:email" component={Reservar_Cita}/>
       <PrivateRoute exact path="/Pagar" component={Pagar}/>
       <PrivateRoute exact path="/Chat" component={Chat}/>
+      <PrivateRoute exact path="/Chat_vivo/:id" component={Chat_vivo}/>
       {/* <PrivateRoute exact path="/Pagar" component={Pagar}/> */}
 
       <Route exact path="/Admin" component={AdminHome} />
